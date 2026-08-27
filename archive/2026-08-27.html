@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>데일리 브리핑 · 2026.08.27</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+:root{
+  --bg:#E7EBEF;
+  --surface:#FBFCFD;
+  --ink:#111820;
+  --ink-2:#4A5866;
+  --ink-3:#8A97A3;
+  --rule:#C8D2DA;
+  --sky:#1C6E9E;
+  --market:#A63D28;
+  --ai:#57468C;
+  --pos:#C0392B;
+  --neg:#1F6FB2;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:Pretendard,-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo',sans-serif;
+  font-size:16px;line-height:1.65;
+  padding:0 20px 72px;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:760px;margin:0 auto}
+
+/* ---------- masthead ---------- */
+.masthead{padding:44px 0 22px;border-bottom:2px solid var(--ink)}
+.kicker{
+  font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ink-3);margin-bottom:14px;
+}
+.masthead h1{
+  font-family:'Nanum Myeongjo',serif;font-weight:800;
+  font-size:clamp(34px,9vw,54px);line-height:1.05;letter-spacing:-.02em;
+}
+.masthead .date{
+  display:flex;flex-wrap:wrap;gap:6px 16px;align-items:baseline;
+  margin-top:14px;font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--ink-2);
+}
+.masthead .date b{font-weight:600;color:var(--ink)}
+
+/* ---------- ledger (signature) ---------- */
+.ledger{
+  display:grid;grid-template-columns:1fr;
+  border-bottom:1px solid var(--rule);
+}
+.ledger .cell{
+  display:grid;grid-template-columns:70px 1fr;gap:16px;align-items:baseline;
+  padding:18px 0;border-bottom:1px solid var(--rule);
+}
+.ledger .cell:last-child{border-bottom:none}
+.ledger .tag{
+  font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.16em;
+  text-transform:uppercase;padding-top:6px;
+}
+.ledger .tag.sky{color:var(--sky)}
+.ledger .tag.market{color:var(--market)}
+.ledger .tag.ai{color:var(--ai)}
+.ledger .figure{
+  font-family:'IBM Plex Mono',monospace;font-weight:600;
+  font-size:clamp(22px,6vw,30px);line-height:1.2;letter-spacing:-.02em;
+}
+.ledger .sub{font-size:13.5px;color:var(--ink-2);margin-top:3px}
+
+/* ---------- sections ---------- */
+section{margin-top:52px}
+.head{
+  display:flex;align-items:center;gap:12px;
+  padding-bottom:10px;margin-bottom:22px;border-bottom:1px solid var(--ink);
+}
+.spine{width:5px;height:26px;border-radius:1px;flex:none}
+.s-sky .spine{background:var(--sky)}
+.s-market .spine{background:var(--market)}
+.s-ai .spine{background:var(--ai)}
+.head h2{font-family:'Nanum Myeongjo',serif;font-size:24px;font-weight:800;letter-spacing:-.01em}
+.head .en{
+  margin-left:auto;font-family:'IBM Plex Mono',monospace;font-size:10px;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);
+}
+
+.card{background:var(--surface);border:1px solid var(--rule);border-radius:3px;padding:20px}
+.card + .card{margin-top:12px}
+
+/* weather */
+.wx{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:3px;overflow:hidden}
+.wx div{background:var(--surface);padding:18px 16px}
+.wx .lab{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.16em;color:var(--ink-3);text-transform:uppercase}
+.wx .val{font-family:'IBM Plex Mono',monospace;font-size:26px;font-weight:600;margin-top:6px;letter-spacing:-.02em}
+.wx .note{font-size:13px;color:var(--ink-2);margin-top:2px}
+.advice{
+  margin-top:12px;padding:14px 16px;border-left:4px solid var(--sky);
+  background:var(--surface);font-size:14.5px;color:var(--ink-2);
+}
+.advice b{color:var(--ink);font-weight:600}
+
+/* market table */
+table{width:100%;border-collapse:collapse;background:var(--surface);border:1px solid var(--rule);border-radius:3px}
+th,td{padding:13px 14px;text-align:right;border-bottom:1px solid var(--rule);font-family:'IBM Plex Mono',monospace;font-size:14px}
+th{
+  font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);
+  font-weight:500;background:transparent;
+}
+th:first-child,td:first-child{text-align:left;font-family:Pretendard,sans-serif;font-size:14.5px;font-weight:600}
+tr:last-child td{border-bottom:none}
+.up{color:var(--pos)}
+.down{color:var(--neg)}
+.closed{color:var(--ink-3);font-size:11px;font-weight:500}
+
+/* ai list */
+ol.news{list-style:none;counter-reset:n}
+ol.news li{
+  counter-increment:n;background:var(--surface);border:1px solid var(--rule);
+  border-radius:3px;padding:18px 20px 18px 20px;position:relative;
+}
+ol.news li + li{margin-top:10px}
+ol.news li::before{
+  content:counter(n,decimal-leading-zero);
+  font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;
+  color:var(--ai);display:block;margin-bottom:8px;
+}
+ol.news h3{font-size:16.5px;font-weight:700;line-height:1.45;letter-spacing:-.01em}
+ol.news p{font-size:14px;color:var(--ink-2);margin-top:6px}
+.stamp{
+  display:inline-block;margin-top:10px;font-family:'IBM Plex Mono',monospace;
+  font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);
+  border:1px solid var(--rule);border-radius:2px;padding:3px 8px;
+}
+
+/* takeaway */
+.takeaway{
+  margin-top:52px;background:var(--ink);color:#E7EBEF;border-radius:3px;padding:28px 24px;
+}
+.takeaway .en{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#8A97A3}
+.takeaway h2{font-family:'Nanum Myeongjo',serif;font-size:22px;font-weight:800;margin:10px 0 14px}
+.takeaway ul{list-style:none}
+.takeaway li{padding-left:18px;position:relative;font-size:15px;color:#C8D2DA;margin-top:9px}
+.takeaway li::before{content:"—";position:absolute;left:0;color:#5A6874}
+
+/* sources */
+.sources{margin-top:44px;padding-top:20px;border-top:1px solid var(--rule)}
+.sources h4{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);margin-bottom:12px}
+.sources a{display:block;color:var(--ink-2);font-size:13.5px;text-decoration:none;padding:5px 0;border-bottom:1px dotted var(--rule)}
+.sources a:hover,.sources a:focus{color:var(--sky)}
+footer{margin-top:36px;font-size:12.5px;color:var(--ink-3);line-height:1.7}
+
+@media(min-width:640px){
+  .ledger{grid-template-columns:repeat(3,1fr);gap:0}
+  .ledger .cell{
+    grid-template-columns:1fr;gap:0;border-bottom:none;border-right:1px solid var(--rule);
+    padding:22px 20px 22px 0;
+  }
+  .ledger .cell:first-child{padding-left:0}
+  .ledger .cell:not(:first-child){padding-left:20px}
+  .ledger .cell:last-child{border-right:none}
+  .ledger .tag{padding-top:0;margin-bottom:8px}
+}
+@media(prefers-reduced-motion:no-preference){
+  .card,ol.news li,.wx,table{animation:rise .5s ease both}
+  @keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="kicker">Daily Brief · Suwon</div>
+    <h1>오늘의 종합 브리핑</h1>
+    <div class="date">
+      <span><b>2026년 8월 27일</b> 목요일</span>
+      <span>날씨 · 증시 · AI</span>
+    </div>
+  </header>
+
+  <div class="ledger">
+    <div class="cell">
+      <div class="tag sky">Weather</div>
+      <div>
+        <div class="figure">32° / 24°</div>
+        <div class="sub">수원, 오늘 대체로 흐림 · 비 소식 없음 · 자외선지수 확인 불가</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="tag market">Market</div>
+      <div>
+        <div class="figure">6,808.21</div>
+        <div class="sub">코스피 8/26 종가 <span class="up">▲0.97%</span> · 코스닥 826.87 <span class="down">▼0.03%</span></div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="tag ai">AI</div>
+      <div>
+        <div class="figure">엔비디아 어닝 서프라이즈</div>
+        <div class="sub">2분기 매출 962억 달러로 컨센서스 상회, 3분기 가이던스도 웃돌아</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 날씨 ── -->
+  <section class="s-sky">
+    <div class="head"><span class="spine"></span><h2>날씨</h2><span class="en">Suwon, Gyeonggi</span></div>
+
+    <div class="wx">
+      <div>
+        <div class="lab">오늘 · 8/27</div>
+        <div class="val">32° / 24°</div>
+        <div class="note">낮 최고 32도까지 오르며 대체로 구름많고 흐린 날씨. 강수확률은 30% 이하로 낮고 기상청 예보상 비 소식은 없음. 습도는 낮 동안 55~60%까지 낮아졌다가 밤사이 다시 80~95%까지 오름</div>
+      </div>
+      <div>
+        <div class="lab">내일 · 8/28</div>
+        <div class="val">30° / 24°</div>
+        <div class="note">오늘보다 최고기온이 소폭 낮아져 30도, 최저 24도 전망. 대체로 흐리며 강수확률은 20~30% 수준이나 예보상 비 소식은 없음</div>
+      </div>
+      <div>
+        <div class="lab">바람</div>
+        <div class="val" style="font-size:20px">약함</div>
+        <div class="note">초속 1~2m 안팎의 남서~남풍 계열로 오늘·내일 모두 바람은 약한 편</div>
+      </div>
+      <div>
+        <div class="lab">자외선</div>
+        <div class="val" style="font-size:20px">확인 불가</div>
+        <div class="note">이번 브리핑에서는 기상청 자외선지수 실황 자료를 확인하지 못했습니다. 한여름 낮 시간대인 만큼 외출 시 자외선 차단제를 챙기는 것이 안전합니다</div>
+      </div>
+    </div>
+
+    <div class="advice">
+      <b>오늘 챙길 것.</b> 수원은 오늘 최고 32도, 최저 24도로 무더운 날씨가 이어지지만 강수확률은 30% 이하로 낮고 기상청 예보상 비 소식은 없습니다. 다만 자외선지수는 이번 브리핑에서 확인하지 못했으니 장시간 외출 시 자외선 차단제를 챙기세요. 내일(8/28, 금요일)은 최고 30도, 최저 24도로 오늘과 비슷하거나 소폭 선선해질 전망입니다.
+    </div>
+  </section>
+
+  <!-- ── 증시 ── -->
+  <section class="s-market">
+    <div class="head"><span class="spine"></span><h2>증시</h2><span class="en">Latest Close</span></div>
+
+    <table>
+      <thead>
+        <tr><th>지표</th><th>종가</th><th>등락</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>코스피 <span style="font-weight:400;color:var(--ink-3);font-size:12px">8/26(수) 종가 · 오늘 <span class="closed">개장 전</span></span></td><td>6,808.21</td><td class="up">+65.47 (+0.97%)</td></tr>
+        <tr><td>코스닥 <span style="font-weight:400;color:var(--ink-3);font-size:12px">8/26(수) 종가 · 오늘 <span class="closed">개장 전</span></span></td><td>826.87</td><td class="down">-0.28 (-0.03%)</td></tr>
+        <tr><td>원/달러 <span style="font-weight:400;color:var(--ink-3);font-size:12px">8/26(수) 종가</span></td><td>1,384.8</td><td class="down">-1.3원(원화강세)</td></tr>
+        <tr><td>다우 <span style="font-weight:400;color:var(--ink-3);font-size:12px">8/26(수·현지) 종가</span></td><td>53,463.88</td><td class="down">-113.52 (-0.21%)</td></tr>
+        <tr><td>S&amp;P500 <span style="font-weight:400;color:var(--ink-3);font-size:12px">8/26(수·현지) 종가</span></td><td>7,675.70</td><td class="down">-1.58 (-0.02%)</td></tr>
+        <tr><td>나스닥 <span style="font-weight:400;color:var(--ink-3);font-size:12px">8/26(수·현지) 종가</span></td><td>26,130.20</td><td class="down">-21.10 (-0.08%)</td></tr>
+      </tbody>
+    </table>
+
+    <div class="card" style="margin-top:12px">
+      <h3 style="font-size:16px;font-weight:700;margin-bottom:8px">한 줄 해석</h3>
+      <p style="font-size:14.5px;color:var(--ink-2)">오늘(8/27, 목) 국내 증시 개장 전 기준으로 가장 최근 마감치는 어제(8/26) 수치입니다. 코스피는 삼성전자·SK하이닉스 자사주 매입 소식에 반도체주가 반등하며 0.97% 오른 6,808.21로 6,800선을 회복했습니다. 반면 코스닥은 중소형 제어·2차전지주 약세 속에 0.03% 소폭 내린 826.87로 보합권 마감했습니다. 원/달러 환율은 1.3원 내린 1,384.8원으로 이틀 연속 1,380원대를 지키며 원화가 소폭 강세를 보였습니다. 뉴욕증시는 예상보다 높게 나온 7월 개인소비지출(PCE) 물가지표와 엔비디아 실적 발표를 앞둔 경계감이 겹치며 다우(-0.21%)·S&amp;P500(-0.02%)·나스닥(-0.08%) 3대 지수 모두 소폭 하락 마감했습니다.</p>
+    </div>
+  </section>
+
+  <!-- ── AI ── -->
+  <section class="s-ai">
+    <div class="head"><span class="spine"></span><h2>AI 최신 뉴스</h2><span class="en">Last 72h</span></div>
+
+    <ol class="news">
+      <li>
+        <h3>엔비디아, 2분기 매출·이익 모두 서프라이즈…시간외 주가는 소폭 하락</h3>
+        <p>엔비디아가 26일(현지시간) 장 마감 후 발표한 2027회계연도 2분기 실적에서 매출 962억 달러(시장 전망치 924억 달러 상회, 전년 대비 106% 증가)와 조정 주당순이익 2.22달러(전망치 2.09달러)를 기록하며 컨센서스를 웃돌았습니다. 데이터센터 매출은 890억 달러였고, 3분기 매출 가이던스로 제시한 1,080억 달러도 시장 예상치를 38억 달러가량 상회했습니다. 다만 4분기 연속 서프라이즈에도 시간외 주가는 0.3%가량 내렸습니다.</p>
+        <span class="stamp">Fortune·이데일리 · 8/26(현지)</span>
+      </li>
+      <li>
+        <h3>오픈AI, 삼성 HBM4 탑재한 자체 AI 추론칩 '할라페뇨' 공개</h3>
+        <p>오픈AI 하드웨어 총괄 리처드 호는 25일(현지시간) 블룸버그와의 인터뷰에서 자체 개발한 AI 추론칩 '할라페뇨'가 전력 단위당 처리량과 응답 속도에서 엔비디아 'GB300'을 앞섰다고 밝혔습니다. 삼성전자산 HBM4(대역폭 15.4TB/s)를 탑재한 이 칩은 연말부터 오픈AI 자체 모델 구동에 투입될 예정으로, 엔비디아 의존도를 낮추려는 행보로 풀이됩니다.</p>
+        <span class="stamp">SBS·이투데이 · 8/25(현지)</span>
+      </li>
+      <li>
+        <h3>뤼튼, 국내 AI 서비스 스타트업 최초로 유니콘 등극</h3>
+        <p>국내 생성형 AI 서비스 스타트업 뤼튼테크놀로지스가 26일 1,000억 원 규모의 시리즈C 투자를 유치하며 기업가치 1조 원을 넘어섰다고 밝혔습니다. 국내 AI 서비스 스타트업이 유니콘 반열에 오른 것은 이번이 처음이며, 누적 투자 유치액은 약 2,300억 원에 달합니다.</p>
+        <span class="stamp">한국일보 · 8/26</span>
+      </li>
+      <li>
+        <h3>톰슨로이터, 자체 법률특화 LLM '톰슨' 공개…빅테크 의존도 낮추기</h3>
+        <p>톰슨로이터가 24일(현지시간) 자체 개발한 첫 대규모언어모델 '톰슨(Thomson)'을 공개했습니다. 임페리얼칼리지런던 FAIR랩이 개발한 기반 모델 위에 웨스트로·프랙티컬로 등 자사 법률 콘텐츠로 학습시켰으며, 학습·인재 투자에 4,000만 달러를 투입했습니다. 법률 AI 도구 'CoCounsel'의 표 분석 기능부터 우선 적용됩니다.</p>
+        <span class="stamp">Law.com·SiliconANGLE · 8/24(현지)</span>
+      </li>
+      <li>
+        <h3>中 유니트리 로보틱스, 상장 첫날 460% 급등 후 사흘 연속 급락…로봇 버블 우려</h3>
+        <p>중국 휴머노이드 로봇 제조업체 유니트리 로보틱스가 상하이증시 상장 첫날 460% 폭등했던 주가가 이후 사흘 연속 하락하며 고점 대비 45% 빠졌습니다. 시가총액은 최고 660억 달러에서 큰 폭으로 줄었고, 1분기 조정순이익이 53% 감소한 것으로 알려지며 중국 로봇주 전반에 대한 거품 논란이 재점화됐습니다.</p>
+        <span class="stamp">Colombia One·Gasgoo · 8/25(현지)</span>
+      </li>
+    </ol>
+  </section>
+
+  <div class="takeaway">
+    <div class="en">Bottom line</div>
+    <h2>오늘 기억할 세 가지</h2>
+    <ul>
+      <li>수원은 오늘 최고 32도, 최저 24도로 무더운 날씨가 이어지지만 강수확률은 30% 이하로 낮고 예보상 비 소식은 없습니다. 자외선지수는 이번 브리핑에서 확인하지 못했으니 외출 시 자외선 차단제를 챙기세요. 내일(8/28)은 30도/24도로 오늘과 비슷할 전망입니다.</li>
+      <li>국내 증시는 어제(8/26) 코스피가 반도체주 반등에 0.97% 오른 6,808.21로 6,800선을 회복한 반면 코스닥은 0.03% 소폭 내린 826.87로 보합 마감했습니다. 원/달러 환율은 1,384.8원으로 이틀째 1,380원대를 지켰고, 뉴욕증시는 PCE 물가지표와 엔비디아 실적 경계감에 3대 지수 모두 소폭 하락했습니다.</li>
+      <li>엔비디아가 매출·이익 모두 컨센서스를 웃도는 2분기 실적과 시장 예상을 상회하는 3분기 가이던스를 내놨고, 오픈AI는 삼성 HBM4를 탑재한 자체 AI 칩 '할라페뇨'를 공개하며 엔비디아 의존도 낮추기에 나섰습니다. 국내에서는 뤼튼이 AI 서비스 스타트업 최초로 유니콘에 등극했습니다.</li>
+    </ul>
+  </div>
+
+  <div class="sources">
+    <h4>출처 확인하기</h4>
+    <a href="https://fortune.com/2026/08/26/nvidia-results-q2-earnings/" target="_blank" rel="noopener">Fortune · 엔비디아 2분기 실적, 매출 962억 달러</a>
+    <a href="https://marketin.edaily.co.kr/News/ReadE?newsId=01751526645451216" target="_blank" rel="noopener">이데일리 · 엔비디아 실적·전망치 상회, 시간외 주가 소폭 하락</a>
+    <a href="https://news.sbs.co.kr/news/endPage.do?news_id=N1008722391&plink=ORI&cooper=RSSREADER" target="_blank" rel="noopener">SBS · 오픈AI 자체 칩 '할라페뇨' 연내 투입</a>
+    <a href="https://www.hankookilbo.com/news/article/A2026082616520005169" target="_blank" rel="noopener">한국일보 · 뤼튼, AI 서비스 스타트업 첫 유니콘 등극</a>
+    <a href="https://www.thomsonreuters.com/en/press-releases/2026/august/thomson-reuters-leverages-its-world-class-data-assets-to-launch-its-own-frontier-model" target="_blank" rel="noopener">Thomson Reuters · 자체 LLM '톰슨' 공개 보도자료</a>
+    <a href="https://colombiaone.com/2026/08/25/unitrees-stock-plunge-ipo-raises-fears-robotics/" target="_blank" rel="noopener">Colombia One · 유니트리 로보틱스 주가 급락, 로봇 버블 우려</a>
+    <a href="https://www.gukjenews.com/news/articleView.html?idxno=3675493" target="_blank" rel="noopener">국제뉴스 · 코스피 6,808.21 마감, 원·달러 1,384.8원</a>
+    <a href="https://www.cnbc.com/2026/08/25/stock-market-today-live-updates.html" target="_blank" rel="noopener">CNBC · 美 3대 지수 8/26 마감 시황</a>
+    <a href="https://www.weather.go.kr/w/index.do" target="_blank" rel="noopener">기상청 날씨누리 · 수원 단기예보</a>
+  </div>
+
+  <footer>
+    Claude가 공개 자료를 종합해 자동 생성한 브리핑입니다. 수치는 작성 시점 기준이며, 투자 판단의 근거로 삼기 전에 원문과 실시간 시세를 반드시 확인하세요. 투자 자문이 아닙니다.
+  </footer>
+
+</div>
+</body>
+</html>
