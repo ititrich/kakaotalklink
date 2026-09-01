@@ -1,1 +1,342 @@
-PLACEHOLDER
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>데일리 브리핑 · 2026.09.01</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+:root{
+  --bg:#E7EBEF;
+  --surface:#FBFCFD;
+  --ink:#111820;
+  --ink-2:#4A5866;
+  --ink-3:#8A97A3;
+  --rule:#C8D2DA;
+  --sky:#1C6E9E;
+  --market:#A63D28;
+  --ai:#57468C;
+  --pos:#C0392B;
+  --neg:#1F6FB2;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:Pretendard,-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo',sans-serif;
+  font-size:16px;line-height:1.65;
+  padding:0 20px 72px;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:760px;margin:0 auto}
+
+/* ---------- masthead ---------- */
+.masthead{padding:44px 0 22px;border-bottom:2px solid var(--ink)}
+.kicker{
+  font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ink-3);margin-bottom:14px;
+}
+.masthead h1{
+  font-family:'Nanum Myeongjo',serif;font-weight:800;
+  font-size:clamp(34px,9vw,54px);line-height:1.05;letter-spacing:-.02em;
+}
+.masthead .date{
+  display:flex;flex-wrap:wrap;gap:6px 16px;align-items:baseline;
+  margin-top:14px;font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--ink-2);
+}
+.masthead .date b{font-weight:600;color:var(--ink)}
+
+/* ---------- ledger (signature) ---------- */
+.ledger{
+  display:grid;grid-template-columns:1fr;
+  border-bottom:1px solid var(--rule);
+}
+.ledger .cell{
+  display:grid;grid-template-columns:70px 1fr;gap:16px;align-items:baseline;
+  padding:18px 0;border-bottom:1px solid var(--rule);
+}
+.ledger .cell:last-child{border-bottom:none}
+.ledger .tag{
+  font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.16em;
+  text-transform:uppercase;padding-top:6px;
+}
+.ledger .tag.sky{color:var(--sky)}
+.ledger .tag.market{color:var(--market)}
+.ledger .tag.ai{color:var(--ai)}
+.ledger .figure{
+  font-family:'IBM Plex Mono',monospace;font-weight:600;
+  font-size:clamp(22px,6vw,30px);line-height:1.2;letter-spacing:-.02em;
+}
+.ledger .sub{font-size:13.5px;color:var(--ink-2);margin-top:3px}
+
+/* ---------- sections ---------- */
+section{margin-top:52px}
+.head{
+  display:flex;align-items:center;gap:12px;
+  padding-bottom:10px;margin-bottom:22px;border-bottom:1px solid var(--ink);
+}
+.spine{width:5px;height:26px;border-radius:1px;flex:none}
+.s-sky .spine{background:var(--sky)}
+.s-market .spine{background:var(--market)}
+.s-ai .spine{background:var(--ai)}
+.head h2{font-family:'Nanum Myeongjo',serif;font-size:24px;font-weight:800;letter-spacing:-.01em}
+.head .en{
+  margin-left:auto;font-family:'IBM Plex Mono',monospace;font-size:10px;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);
+}
+
+.card{background:var(--surface);border:1px solid var(--rule);border-radius:3px;padding:20px}
+.card + .card{margin-top:12px}
+
+/* weather */
+.wx{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:3px;overflow:hidden}
+.wx div{background:var(--surface);padding:18px 16px}
+.wx .lab{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.16em;color:var(--ink-3);text-transform:uppercase}
+.wx .val{font-family:'IBM Plex Mono',monospace;font-size:26px;font-weight:600;margin-top:6px;letter-spacing:-.02em}
+.wx .note{font-size:13px;color:var(--ink-2);margin-top:2px}
+.advice{
+  margin-top:12px;padding:14px 16px;border-left:4px solid var(--sky);
+  background:var(--surface);font-size:14.5px;color:var(--ink-2);
+}
+.advice b{color:var(--ink);font-weight:600}
+
+/* market table */
+table{width:100%;border-collapse:collapse;background:var(--surface);border:1px solid var(--rule);border-radius:3px}
+th,td{padding:13px 14px;text-align:right;border-bottom:1px solid var(--rule);font-family:'IBM Plex Mono',monospace;font-size:14px}
+th{
+  font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);
+  font-weight:500;background:transparent;
+}
+th:first-child,td:first-child{text-align:left;font-family:Pretendard,sans-serif;font-size:14.5px;font-weight:600}
+tr:last-child td{border-bottom:none}
+.up{color:var(--pos)}
+.down{color:var(--neg)}
+.closed{color:var(--ink-3);font-size:11px;font-weight:500}
+
+/* ai list */
+ol.news{list-style:none;counter-reset:n}
+ol.news li{
+  counter-increment:n;background:var(--surface);border:1px solid var(--rule);
+  border-radius:3px;padding:18px 20px 18px 20px;position:relative;
+}
+ol.news li + li{margin-top:10px}
+ol.news li::before{
+  content:counter(n,decimal-leading-zero);
+  font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;
+  color:var(--ai);display:block;margin-bottom:8px;
+}
+ol.news h3{font-size:16.5px;font-weight:700;line-height:1.45;letter-spacing:-.01em}
+ol.news p{font-size:14px;color:var(--ink-2);margin-top:6px}
+.stamp{
+  display:inline-block;margin-top:10px;font-family:'IBM Plex Mono',monospace;
+  font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);
+  border:1px solid var(--rule);border-radius:2px;padding:3px 8px;
+}
+
+/* takeaway */
+.takeaway{
+  margin-top:52px;background:var(--ink);color:#E7EBEF;border-radius:3px;padding:28px 24px;
+}
+.takeaway .en{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#8A97A3}
+.takeaway h2{font-family:'Nanum Myeongjo',serif;font-size:22px;font-weight:800;margin:10px 0 14px}
+.takeaway ul{list-style:none}
+.takeaway li{padding-left:18px;position:relative;font-size:15px;color:#C8D2DA;margin-top:9px}
+.takeaway li::before{content:"—";position:absolute;left:0;color:#5A6874}
+
+/* sources */
+.sources{margin-top:44px;padding-top:20px;border-top:1px solid var(--rule)}
+.sources h4{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);margin-bottom:12px}
+.sources a{display:block;color:var(--ink-2);font-size:13.5px;text-decoration:none;padding:5px 0;border-bottom:1px dotted var(--rule)}
+.sources a:hover,.sources a:focus{color:var(--sky)}
+footer{margin-top:36px;font-size:12.5px;color:var(--ink-3);line-height:1.7}
+
+@media(min-width:640px){
+  .ledger{grid-template-columns:repeat(3,1fr);gap:0}
+  .ledger .cell{
+    grid-template-columns:1fr;gap:0;border-bottom:none;border-right:1px solid var(--rule);
+    padding:22px 20px 22px 0;
+  }
+  .ledger .cell:first-child{padding-left:0}
+  .ledger .cell:not(:first-child){padding-left:20px}
+  .ledger .cell:last-child{border-right:none}
+  .ledger .tag{padding-top:0;margin-bottom:8px}
+}
+@media(prefers-reduced-motion:no-preference){
+  .card,ol.news li,.wx,table{animation:rise .5s ease both}
+  @keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="kicker">Daily Brief · Suwon</div>
+    <h1>오늘의 종합 브리핑</h1>
+    <div class="date">
+      <span><b>2026년 9월 1일</b> 화요일</span>
+      <span>날씨 · 증시 · AI</span>
+    </div>
+  </header>
+
+  <div class="ledger">
+    <div class="cell">
+      <div class="tag sky">Weather</div>
+      <div>
+        <div class="figure">27° / 22°</div>
+        <div class="sub">수원, 새벽 비 그친 뒤 갬 · 자외선 확인 불가</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="tag market">Market</div>
+      <div>
+        <div class="figure">6,820.02</div>
+        <div class="sub">코스피 8/31 종가 <span class="up">▲0.46%</span> · 코스닥 834.29 <span class="down">▼0.49%</span></div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="tag ai">AI</div>
+      <div>
+        <div class="figure">엔비디아發 AI 훈풍, 5000억달러 인프라 자본풀</div>
+        <div class="sub">오픈AI 'GPT-5.6' 출시·앤트로픽 구글·브로드컴 제휴</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 날씨 ── -->
+  <section class="s-sky">
+    <div class="head"><span class="spine"></span><h2>날씨</h2><span class="en">Suwon, Gyeonggi</span></div>
+
+    <div class="wx">
+      <div>
+        <div class="lab">오늘 · 9/1</div>
+        <div class="val">27° / 22°</div>
+        <div class="note">새벽부터 아침 사이 비가 오다가(6시경 최대 시간당 19mm, 강수확률 60%) 오전 9시 이후 그치고 낮부터 흐리게 개면서 최고 27도까지 오를 전망. 습도는 75~95%로 다소 후텁지근함</div>
+      </div>
+      <div>
+        <div class="lab">내일 · 9/2</div>
+        <div class="val">27° / 22°</div>
+        <div class="note">비 소식 없이(강수확률 20~30%) 대체로 흐린 하늘이 이어지고, 낮 최고 27도·아침 최저 22도로 오늘과 비슷한 기온이 예상됨</div>
+      </div>
+      <div>
+        <div class="lab">바람</div>
+        <div class="val" style="font-size:22px">약함 (1~2m/s)</div>
+        <div class="note">기상청 단기예보 기준 남풍~서풍 계열의 약한 바람이 이틀간 이어질 전망</div>
+      </div>
+      <div>
+        <div class="lab">자외선</div>
+        <div class="val" style="font-size:22px">확인 불가</div>
+        <div class="note">기상청 단기예보 자료에서 자외선지수 항목을 확인하지 못함. 이틀 모두 흐린 날씨 영향으로 맑은 날보다는 낮은 수준일 것으로 추정됨</div>
+      </div>
+    </div>
+
+    <div class="advice">
+      <b>오늘 챙길 것.</b> 수원은 오늘(9/1, 화) 새벽부터 아침 사이 비가 오겠으니(강수확률 60%, 한때 시간당 최대 19mm) 출근길 우산을 챙기세요. 오전 9시 이후엔 비가 그치고 낮부터 흐린 하늘 속에 최고 27도까지 오르겠습니다. 내일(9/2, 수)은 비 없이 흐린 날이 이어지며 오늘과 비슷한 최고 27도·최저 22도가 예상됩니다. 바람은 약하며, 자외선지수는 수치를 확인하지 못해 흐린 날씨 기준으로만 참고하세요.
+    </div>
+  </section>
+
+  <!-- ── 증시 ── -->
+  <section class="s-market">
+    <div class="head"><span class="spine"></span><h2>증시</h2><span class="en">Latest Close</span></div>
+
+    <table>
+      <thead>
+        <tr><th>지표</th><th>종가</th><th>등락</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>코스피 <span style="font-weight:400;color:var(--ink-3);font-size:12px">8/31(월) 종가 · 9/1(화) 개장 예정</span></td><td>6,820.02</td><td class="up">+31.14 (+0.46%)</td></tr>
+        <tr><td>코스닥 <span style="font-weight:400;color:var(--ink-3);font-size:12px">8/31(월) 종가 · 9/1(화) 개장 예정</span></td><td>834.29</td><td class="down">-4.12 (-0.49%)</td></tr>
+        <tr><td>원/달러 <span style="font-weight:400;color:var(--ink-3);font-size:12px">8/31(월) 종가</span></td><td>1,368.6</td><td class="down">-3.9원(원화강세)</td></tr>
+        <tr><td>다우 <span style="font-weight:400;color:var(--ink-3);font-size:12px">8/31(월·현지) 종가</span></td><td>53,186.32</td><td class="down">-373.67 (-0.70%)</td></tr>
+        <tr><td>S&amp;P500 <span style="font-weight:400;color:var(--ink-3);font-size:12px">8/31(월·현지) 종가</span></td><td>7,686.38</td><td class="down">-25.38 (-0.33%)</td></tr>
+        <tr><td>나스닥 <span style="font-weight:400;color:var(--ink-3);font-size:12px">8/31(월·현지) 종가</span></td><td>26,370.89</td><td class="down">-31.53 (-0.12%)</td></tr>
+      </tbody>
+    </table>
+
+    <div class="card" style="margin-top:12px">
+      <h3 style="font-size:16px;font-weight:700;margin-bottom:8px">한 줄 해석</h3>
+      <p style="font-size:14.5px;color:var(--ink-2)">오늘(9/1, 화) 국내 증시는 정규 개장을 앞두고 있으며, 가장 최근 마감치인 어제(8/31, 월) 기준으로 코스피는 반도체 대형주 강세에 힘입어 전 거래일보다 0.46% 오른 6,820.02로 마감해 장중 한때 밀렸다가 막판 반등하며 6,800선을 회복했습니다. 반면 코스닥은 0.49% 내린 834.29로 대조적인 흐름을 보였습니다. 원/달러 환율은 전일보다 3.9원 내린 1,368.6원에 마감하며 원화 강세가 이어졌습니다. 같은 날 뉴욕증시는 다우(-0.70%)·S&amp;P500(-0.33%)·나스닥(-0.12%) 3대 지수가 모두 하락 마감했는데, 거래량이 가벼운 가운데 관망세가 짙었던 것으로 풀이됩니다. 국내외 증시 모두 오늘부터 새 거래일이 시작됩니다.</p>
+    </div>
+  </section>
+
+  <!-- ── AI ── -->
+  <section class="s-ai">
+    <div class="head"><span class="spine"></span><h2>AI 최신 뉴스</h2><span class="en">Last 72h</span></div>
+
+    <ol class="news">
+      <li>
+        <h3>엔비디아, 2027 회계연도 2분기 매출 962억달러…전년 대비 106% 급증</h3>
+        <p>엔비디아가 5~7월 분기 매출 962억2100만달러(전년 동기 대비 106%↑)를 기록했다고 발표했습니다. 데이터센터 부문 매출은 890억달러로 117% 늘었고, 콜레트 크레스 CFO는 내년(2028 회계연도) 매출이 시장 예상치(44%)를 웃도는 70% 성장할 것이라고 밝혔습니다. AI 반도체 수요가 당분간 꺾이지 않을 것이라는 신호로 해석됩니다.</p>
+        <span class="stamp">머니투데이·Investing.com · 8/26(현지)</span>
+      </li>
+      <li>
+        <h3>젠슨 황 엔비디아 CEO, 6대 금융기관과 5000억달러 AI 인프라 자본풀 조성</h3>
+        <p>엔비디아가 6대 글로벌 금융기관과 함께 데이터센터 등 AI 인프라 건설에 투입할 5000억달러 규모의 민간자본 풀 조성에 합의했다고 밝혔습니다. 업계에서는 8월을 소프트웨어 구독보다 데이터센터·전력망 같은 물리적 인프라로 대규모 자금이 몰린 달로 평가하고 있습니다.</p>
+        <span class="stamp">Today's Startup News · 8/31(현지)</span>
+      </li>
+      <li>
+        <h3>오픈AI, 신모델 'GPT-5.6' 패밀리 정식 출시…자체 AI칩엔 삼성 HBM4 탑재 추정</h3>
+        <p>오픈AI가 플래그십 'Sol', 균형형 'Terra', 경량형 'Luna'로 구성된 GPT-5.6 패밀리를 정식 출시했습니다. 앞서 오픈AI는 연내 자체 설계 AI칩 투입 계획도 밝혔는데, 삼성전자의 차세대 HBM4가 탑재될 것으로 업계는 추정하고 있습니다.</p>
+        <span class="stamp">OpenAI·SBS · 8월말</span>
+      </li>
+      <li>
+        <h3>앤트로픽, 구글·브로드컴과 차세대 컴퓨팅 자원 대규모 확장 파트너십</h3>
+        <p>앤트로픽이 구글·브로드컴과 손잡고 수 기가와트(GW) 규모의 차세대 컴퓨팅 자원을 추가 확보하는 파트너십을 발표했습니다. 클로드 모델 학습·서비스에 필요한 연산 인프라를 선제적으로 확충하려는 행보로 풀이됩니다.</p>
+        <span class="stamp">Anthropic · 8월말(현지)</span>
+      </li>
+      <li>
+        <h3>SK하이닉스, HBM4E 등 차세대 AI 메모리 풀스택 전략 공개</h3>
+        <p>SK하이닉스가 델 테크놀로지스 포럼에서 7세대 HBM4E, 6세대 HBM4 웨이퍼를 비롯해 AI 서버용 고용량 D램·eSSD 등 AI 메모리 풀스택 제품군을 선보였습니다. 엔비디아의 실적 훈풍과 맞물려 국내 메모리 업계의 HBM 수요 전망도 동반 상향되는 분위기입니다.</p>
+        <span class="stamp">SPTA Times Korea · 8/26</span>
+      </li>
+      <li>
+        <h3>중국 즈푸AI, MSCI 신흥국지수 신규 편입 종목 중 시가총액 최대 규모로 편입</h3>
+        <p>중국 AI기업 즈푸AI가 MSCI 신흥국지수 리밸런싱에서 신규 편입 종목 가운데 시가총액 기준 최대 규모로 이름을 올렸습니다. 지수를 추종하는 글로벌 패시브 자금의 매수세가 유입될 것으로 예상됩니다.</p>
+        <span class="stamp">뉴스핌 · 8/30</span>
+      </li>
+      <li>
+        <h3>EU, AI Act 투명성 의무 8월 발효…고위험 AI 규율은 'Digital Omnibus'로 연기</h3>
+        <p>EU AI Act 제50조에 따른 범용 인공지능(GPAI) 투명성 의무가 8월부터 본격 발효돼 집행·제재 권한이 가동됩니다. 다만 같은 시기 예정됐던 의료·자율주행·교육 등 고위험 AI 시스템 규율은 'Digital Omnibus' 개정으로 시행이 대폭 연기됐습니다.</p>
+        <span class="stamp">법률신문 · 8월</span>
+      </li>
+    </ol>
+  </section>
+
+  <div class="takeaway">
+    <div class="en">Bottom line</div>
+    <h2>오늘 기억할 세 가지</h2>
+    <ul>
+      <li>수원은 오늘(9/1, 화) 새벽부터 아침 사이 비가 오다가(강수확률 60%) 오전 9시 이후 그치고 낮부터 흐리게 개며 최고 27도까지 오르겠습니다. 내일(9/2, 수)도 비 없이 흐리며 최고 27도·최저 22도로 비슷한 날씨가 이어집니다. 자외선지수는 수치를 확인하지 못했습니다.</li>
+      <li>국내외 증시는 오늘 개장을 앞두고 있으며, 최근 거래일(8/31, 월) 기준 코스피는 반도체 강세로 0.46% 오른 6,820.02, 코스닥은 0.49% 내린 834.29로 마감했습니다. 원/달러 환율은 3.9원 내린 1,368.6원, 뉴욕증시 3대 지수는 모두 소폭 하락 마감했습니다.</li>
+      <li>엔비디아의 어닝 서프라이즈와 5000억달러 규모 AI 인프라 자본풀 조성 소식이 시장 훈풍을 이끄는 가운데, 오픈AI의 'GPT-5.6' 출시, 앤트로픽·구글·브로드컴의 컴퓨팅 확장 제휴, SK하이닉스의 차세대 HBM 공개 등 빅테크의 인프라·제품 경쟁이 동시다발적으로 이어지고 있습니다. EU에서는 AI Act 투명성 의무가 발효되며 규제 국면도 본격화됐습니다.</li>
+    </ul>
+  </div>
+
+  <div class="sources">
+    <h4>출처 확인하기</h4>
+    <a href="https://www.mt.co.kr/stock/2026/08/31/2026083115281788282" target="_blank" rel="noopener">머니투데이 · 코스피 31.14포인트(0.46%) 오른 6820.02 마감</a>
+    <a href="https://www.mt.co.kr/stock/2026/08/31/2026083115281728752" target="_blank" rel="noopener">머니투데이 · 코스닥 4.12포인트(0.49%) 내린 834.29 마감</a>
+    <a href="https://www.mt.co.kr/economy/2026/08/31/2026083115361066531" target="_blank" rel="noopener">머니투데이 · 원/달러 환율, 3.9원 내린 1368.6원</a>
+    <a href="https://investrade.com/market-review-august-31-2026/" target="_blank" rel="noopener">Investrade · Market Review: August 31, 2026</a>
+    <a href="https://www.mt.co.kr/world/2026/08/27/2026082714204277069" target="_blank" rel="noopener">머니투데이 · 엔비디아 "내년 매출 70% 증가"</a>
+    <a href="https://www.todaysstartupnews.com/news/august-2026-startup-funding-acquisitions-recap" target="_blank" rel="noopener">Today's Startup News · August 2026 Startup Funding Recap</a>
+    <a href="https://openai.com/index/gpt-5-6/" target="_blank" rel="noopener">OpenAI · GPT-5.6</a>
+    <a href="https://news.sbs.co.kr/news/endPage.do?news_id=N1008722391&plink=ORI&cooper=RSSREADER" target="_blank" rel="noopener">SBS · 오픈AI 자체 칩 연내 투입, 삼성 HBM4 탑재 추정</a>
+    <a href="https://www.anthropic.com/news/google-broadcom-partnership-compute" target="_blank" rel="noopener">Anthropic · Google·Broadcom 컴퓨팅 파트너십</a>
+    <a href="https://www.sptatimeskorea.com/post/%EC%A0%9C20260826-tt-01%ED%98%B8-2026%EB%85%84-8%EC%9B%94-26%EC%9D%BC-%EB%B0%98%EB%8F%84%EC%B2%B4-%EA%B8%B0%EC%88%A0-%EA%B4%80%EB%A0%A8-%EC%A3%BC%EC%9A%94-%EB%89%B4%EC%8A%A4-%EC%9A%94%EC%95%BD" target="_blank" rel="noopener">SPTA Times Korea · 반도체 기술 관련 주요 뉴스 요약</a>
+    <a href="https://www.newspim.com/news/view/20260830000198" target="_blank" rel="noopener">뉴스핌 · 중국증시 주간 포인트: 즈푸AI MSCI 편입 외</a>
+    <a href="https://www.lawtimes.co.kr/news/articleViewAmp.html?idxno=223727" target="_blank" rel="noopener">법률신문 · 국내외 AI 규제, 2026년 하반기 분수령</a>
+    <a href="https://www.weather.go.kr/w/index.do" target="_blank" rel="noopener">기상청 날씨누리 · 수원 단기예보</a>
+  </div>
+
+  <footer>
+    Claude가 공개 자료를 종합해 자동 생성한 브리핑입니다. 수치는 작성 시점 기준이며, 투자 판단의 근거로 삼기 전에 원문과 실시간 시세를 반드시 확인하세요. 투자 자문이 아닙니다.
+  </footer>
+
+</div>
+</body>
+</html>
