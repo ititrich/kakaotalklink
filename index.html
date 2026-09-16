@@ -1,6 +1,335 @@
-&lt;!DOCTYPE html&gt;
-&lt;html lang="ko"&gt;
-&lt;head&gt;
-&lt;meta charset="utf-8"&gt;
-&lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
-&lt;title&gt;데일리 브리핑 · 2026.09.16&lt;/title&gt;
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>데일리 브리핑 · 2026.09.16</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+:root{
+  --bg:#E7EBEF;
+  --surface:#FBFCFD;
+  --ink:#111820;
+  --ink-2:#4A5866;
+  --ink-3:#8A97A3;
+  --rule:#C8D2DA;
+  --sky:#1C6E9E;
+  --market:#A63D28;
+  --ai:#57468C;
+  --pos:#C0392B;
+  --neg:#1F6FB2;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:Pretendard,-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo',sans-serif;
+  font-size:16px;line-height:1.65;
+  padding:0 20px 72px;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:760px;margin:0 auto}
+
+/* ---------- masthead ---------- */
+.masthead{padding:44px 0 22px;border-bottom:2px solid var(--ink)}
+.kicker{
+  font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ink-3);margin-bottom:14px;
+}
+.masthead h1{
+  font-family:'Nanum Myeongjo',serif;font-weight:800;
+  font-size:clamp(34px,9vw,54px);line-height:1.05;letter-spacing:-.02em;
+}
+.masthead .date{
+  display:flex;flex-wrap:wrap;gap:6px 16px;align-items:baseline;
+  margin-top:14px;font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--ink-2);
+}
+.masthead .date b{font-weight:600;color:var(--ink)}
+
+/* ---------- ledger (signature) ---------- */
+.ledger{
+  display:grid;grid-template-columns:1fr;
+  border-bottom:1px solid var(--rule);
+}
+.ledger .cell{
+  display:grid;grid-template-columns:70px 1fr;gap:16px;align-items:baseline;
+  padding:18px 0;border-bottom:1px solid var(--rule);
+}
+.ledger .cell:last-child{border-bottom:none}
+.ledger .tag{
+  font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.16em;
+  text-transform:uppercase;padding-top:6px;
+}
+.ledger .tag.sky{color:var(--sky)}
+.ledger .tag.market{color:var(--market)}
+.ledger .tag.ai{color:var(--ai)}
+.ledger .figure{
+  font-family:'IBM Plex Mono',monospace;font-weight:600;
+  font-size:clamp(22px,6vw,30px);line-height:1.2;letter-spacing:-.02em;
+}
+.ledger .sub{font-size:13.5px;color:var(--ink-2);margin-top:3px}
+
+/* ---------- sections ---------- */
+section{margin-top:52px}
+.head{
+  display:flex;align-items:center;gap:12px;
+  padding-bottom:10px;margin-bottom:22px;border-bottom:1px solid var(--ink);
+}
+.spine{width:5px;height:26px;border-radius:1px;flex:none}
+.s-sky .spine{background:var(--sky)}
+.s-market .spine{background:var(--market)}
+.s-ai .spine{background:var(--ai)}
+.head h2{font-family:'Nanum Myeongjo',serif;font-size:24px;font-weight:800;letter-spacing:-.01em}
+.head .en{
+  margin-left:auto;font-family:'IBM Plex Mono',monospace;font-size:10px;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);
+}
+
+.card{background:var(--surface);border:1px solid var(--rule);border-radius:3px;padding:20px}
+.card + .card{margin-top:12px}
+
+/* weather */
+.wx{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:3px;overflow:hidden}
+.wx div{background:var(--surface);padding:18px 16px}
+.wx .lab{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.16em;color:var(--ink-3);text-transform:uppercase}
+.wx .val{font-family:'IBM Plex Mono',monospace;font-size:26px;font-weight:600;margin-top:6px;letter-spacing:-.02em}
+.wx .note{font-size:13px;color:var(--ink-2);margin-top:2px}
+.advice{
+  margin-top:12px;padding:14px 16px;border-left:4px solid var(--sky);
+  background:var(--surface);font-size:14.5px;color:var(--ink-2);
+}
+.advice b{color:var(--ink);font-weight:600}
+
+/* market table */
+table{width:100%;border-collapse:collapse;background:var(--surface);border:1px solid var(--rule);border-radius:3px}
+th,td{padding:13px 14px;text-align:right;border-bottom:1px solid var(--rule);font-family:'IBM Plex Mono',monospace;font-size:14px}
+th{
+  font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);
+  font-weight:500;background:transparent;
+}
+th:first-child,td:first-child{text-align:left;font-family:Pretendard,sans-serif;font-size:14.5px;font-weight:600}
+tr:last-child td{border-bottom:none}
+.up{color:var(--pos)}
+.down{color:var(--neg)}
+.closed{color:var(--ink-3);font-size:11px;font-weight:500}
+
+/* ai list */
+ol.news{list-style:none;counter-reset:n}
+ol.news li{
+  counter-increment:n;background:var(--surface);border:1px solid var(--rule);
+  border-radius:3px;padding:18px 20px 18px 20px;position:relative;
+}
+ol.news li + li{margin-top:10px}
+ol.news li::before{
+  content:counter(n,decimal-leading-zero);
+  font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;
+  color:var(--ai);display:block;margin-bottom:8px;
+}
+ol.news h3{font-size:16.5px;font-weight:700;line-height:1.45;letter-spacing:-.01em}
+ol.news p{font-size:14px;color:var(--ink-2);margin-top:6px}
+.stamp{
+  display:inline-block;margin-top:10px;font-family:'IBM Plex Mono',monospace;
+  font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);
+  border:1px solid var(--rule);border-radius:2px;padding:3px 8px;
+}
+
+/* takeaway */
+.takeaway{
+  margin-top:52px;background:var(--ink);color:#E7EBEF;border-radius:3px;padding:28px 24px;
+}
+.takeaway .en{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#8A97A3}
+.takeaway h2{font-family:'Nanum Myeongjo',serif;font-size:22px;font-weight:800;margin:10px 0 14px}
+.takeaway ul{list-style:none}
+.takeaway li{padding-left:18px;position:relative;font-size:15px;color:#C8D2DA;margin-top:9px}
+.takeaway li::before{content:"—";position:absolute;left:0;color:#5A6874}
+
+/* sources */
+.sources{margin-top:44px;padding-top:20px;border-top:1px solid var(--rule)}
+.sources h4{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);margin-bottom:12px}
+.sources a{display:block;color:var(--ink-2);font-size:13.5px;text-decoration:none;padding:5px 0;border-bottom:1px dotted var(--rule)}
+.sources a:hover,.sources a:focus{color:var(--sky)}
+footer{margin-top:36px;font-size:12.5px;color:var(--ink-3);line-height:1.7}
+
+@media(min-width:640px){
+  .ledger{grid-template-columns:repeat(3,1fr);gap:0}
+  .ledger .cell{
+    grid-template-columns:1fr;gap:0;border-bottom:none;border-right:1px solid var(--rule);
+    padding:22px 20px 22px 0;
+  }
+  .ledger .cell:first-child{padding-left:0}
+  .ledger .cell:not(:first-child){padding-left:20px}
+  .ledger .cell:last-child{border-right:none}
+  .ledger .tag{padding-top:0;margin-bottom:8px}
+}
+@media(prefers-reduced-motion:no-preference){
+  .card,ol.news li,.wx,table{animation:rise .5s ease both}
+  @keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="kicker">Daily Brief · Suwon</div>
+    <h1>오늘의 종합 브리핑</h1>
+    <div class="date">
+      <span><b>2026년 9월 16일</b> 수요일</span>
+      <span>날씨 · 증시 · AI</span>
+    </div>
+  </header>
+
+  <div class="ledger">
+    <div class="cell">
+      <div class="tag sky">Weather</div>
+      <div>
+        <div class="figure">28° / 14°</div>
+        <div class="sub">수원, 하루 종일 맑음 · 비 소식 없음 · 자외선 확인 불가</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="tag market">Market</div>
+      <div>
+        <div class="figure">6,627.26</div>
+        <div class="sub">코스피 9/15 종가 <span class="down">▼0.85%</span> · 코스닥 812.41 <span class="up">▲0.70%</span></div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="tag ai">AI</div>
+      <div>
+        <div class="figure">"속도 늦추자" AI 수장들 발언에 반도체주 요동</div>
+        <div class="sub">아시아·미국 반도체주 급락 속 "서버는 여전히 품귀" 현장 목소리도</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 날씨 ── -->
+  <section class="s-sky">
+    <div class="head"><span class="spine"></span><h2>날씨</h2><span class="en">Suwon, Gyeonggi</span></div>
+
+    <div class="wx">
+      <div>
+        <div class="lab">오늘 · 9/16</div>
+        <div class="val">28° / 14°</div>
+        <div class="note">수요일인 오늘 수원은 기상청 단기예보 기준 하루 종일 맑은 하늘이 이어질 전망. 낮 최고기온은 28도(오후 3시경), 새벽 최저기온은 14도 안팎으로 예보되며 강수 확률은 0%로 비 소식은 없음</div>
+      </div>
+      <div>
+        <div class="lab">내일 · 9/17</div>
+        <div class="val">27° / 17°</div>
+        <div class="note">목요일인 내일은 오늘보다 구름이 많아져 구름많음~흐림 사이를 오갈 전망. 낮 최고 27도·새벽 최저 17도로 아침 기온은 오늘보다 오히려 오르며 일교차는 다소 줄어듦. 강수확률은 20~30%까지 오르지만 실제 강수(PTY)는 예보되지 않아 비 소식은 없음</div>
+      </div>
+      <div>
+        <div class="lab">바람</div>
+        <div class="val" style="font-size:22px">약함</div>
+        <div class="note">기상청 동네예보 기준 오늘 풍속은 초속 0.1~2.2m로 대체로 잔잔하며, 내일은 초속 1.6~3.8m로 오늘보다 다소 강해질 전망. 체감상 바람으로 인한 불편은 크지 않을 것으로 보임</div>
+      </div>
+      <div>
+        <div class="lab">자외선</div>
+        <div class="val" style="font-size:22px">확인 불가</div>
+        <div class="note">오늘 수원 지역의 공식 자외선지수 수치는 검색으로 확인하지 못함. 다만 하루 종일 맑은 하늘이 예보된 만큼 한낮 자외선 노출은 평소보다 강할 수 있어 야외 활동 시 유의가 필요함</div>
+      </div>
+    </div>
+
+    <div class="advice">
+      <b>오늘 챙길 것.</b> 수원은 오늘(9/16, 수) 하루 종일 맑고 낮 최고 28도·새벽 14도 안팎의 완연한 가을 날씨입니다. 비 소식은 없어 우산은 필요 없지만, 맑은 하늘인 만큼 낮 동안 자외선 차단에 신경 쓰는 것이 좋겠습니다. 내일(9/17, 목)은 구름이 많아지며 강수확률이 20~30%까지 오르지만 실제 비는 예보되지 않았으니 크게 걱정할 정도는 아닙니다.
+    </div>
+  </section>
+
+  <!-- ── 증시 ── -->
+  <section class="s-market">
+    <div class="head"><span class="spine"></span><h2>증시</h2><span class="en">Latest Close</span></div>
+
+    <table>
+      <thead>
+        <tr><th>지표</th><th>종가</th><th>등락</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>코스피 <span style="font-weight:400;color:var(--ink-3);font-size:12px">9/15(화) 종가</span></td><td>6,627.26</td><td class="down">-57.11 (-0.85%)</td></tr>
+        <tr><td>코스닥 <span style="font-weight:400;color:var(--ink-3);font-size:12px">9/15(화) 종가</span></td><td>812.41</td><td class="up">+5.62 (+0.70%)</td></tr>
+        <tr><td>원/달러 <span style="font-weight:400;color:var(--ink-3);font-size:12px">9/15(화) 종가</span></td><td>1,359.4</td><td class="up">+12.1원(원화약세)</td></tr>
+        <tr><td>다우 <span style="font-weight:400;color:var(--ink-3);font-size:12px">9/15(월·현지) 종가</span></td><td>52,421.20</td><td class="down">-152.09 (-0.29%)</td></tr>
+        <tr><td>S&amp;P500 <span style="font-weight:400;color:var(--ink-3);font-size:12px">9/15(월·현지) 종가</span></td><td>7,619.98</td><td class="down">-37.00 (-0.48%)</td></tr>
+        <tr><td>나스닥 <span style="font-weight:400;color:var(--ink-3);font-size:12px">9/15(월·현지) 종가</span></td><td>26,186.41</td><td class="down">-146.62 (-0.56%)</td></tr>
+      </tbody>
+    </table>
+    <p class="closed" style="margin-top:8px">표의 수치는 가장 최근 거래일인 어제(9/15, 화) 국내 증시·현지 기준 9/15(월) 미국 증시 종가입니다. 이 브리핑을 작성하는 이른 아침 시점에는 국내외 증시 모두 오늘(9/16) 거래가 아직 시작되지 않았습니다.</p>
+
+    <div class="card" style="margin-top:12px">
+      <h3 style="font-size:16px;font-weight:700;margin-bottom:8px">한 줄 해석</h3>
+      <p style="font-size:14.5px;color:var(--ink-2)">어제(9/15) 국내 증시는 미 국채 10년물 금리의 5% 재돌파와 국제유가의 배럴당 100달러 돌파가 겹치며 외국인·기관이 2조4,000억원 동반 매도에 나섰습니다. 코스피는 0.85% 내린 6,627.26으로 마감했지만, 코스닥은 개인 매수세에 힘입어 0.70% 오른 812.41로 반대 흐름을 보였습니다. 원/달러 환율은 12.1원 오른 1,359.4원으로 원화 약세가 이어졌습니다. 미국에서는 같은 날 앤트로픽·오픈AI·xAI 등 AI 기업 수장들이 잇따라 "AI 개발 속도를 늦춰야 한다"고 촉구하면서 필라델피아 반도체지수가 5.86% 급락, 엔비디아·브로드컴·마이크론·AMD가 일제히 무너지며 다우·S&amp;P500·나스닥 3대 지수 모두 약세로 마감했습니다.</p>
+    </div>
+  </section>
+
+  <!-- ── AI ── -->
+  <section class="s-ai">
+    <div class="head"><span class="spine"></span><h2>AI 최신 뉴스</h2><span class="en">Last 72h</span></div>
+
+    <ol class="news">
+      <li>
+        <h3>아모데이·올트먼·머스크 "AI 개발 속도 늦추자" 한목소리…아시아 반도체주 급락</h3>
+        <p>다리오 아모데이 앤트로픽 CEO가 최첨단 AI가 인간 통제를 벗어날 위험을 막기 위해 개발 속도를 조절해야 한다고 주장했고, 샘 올트먼 오픈AI CEO와 일론 머스크 xAI CEO도 이에 동조했습니다. 여파로 오픈AI 지분을 보유한 소프트뱅크그룹이 장중 최대 13% 급락했고, SK하이닉스는 6%대, 삼성전자는 4%대 하락했습니다.</p>
+        <span class="stamp">글로벌이코노믹 · 9/13~9/14</span>
+      </li>
+      <li>
+        <h3>"개발 멈추자는 말은 아니다"…반도체주 흔든 속도조절론의 실체</h3>
+        <p>업계 안팎에서는 이번 속도조절 발언이 AI 개발 전면 중단이 아니라 안전장치 마련과 병행 추진을 뜻한다는 분석이 나옵니다. 다만 투자자들은 이를 AI 관련 수요 둔화 신호로 받아들이며 반도체주 전반에 매도세가 확산됐습니다.</p>
+        <span class="stamp">아주경제 · 9/15</span>
+      </li>
+      <li>
+        <h3>속도조절론 아우성에도 AI 서버 현장은 여전히 품귀</h3>
+        <p>증시에서는 AI 개발 둔화 우려로 반도체주가 흔들렸지만, 정작 데이터센터·서버 공급 현장에서는 여전히 주문이 밀려 있어 실제 수요와 시장 심리 사이의 괴리가 크다는 지적이 나옵니다.</p>
+        <span class="stamp">글로벌이코노믹 · 9/14</span>
+      </li>
+      <li>
+        <h3>美 반도체주 급락에도 "장기 투자 흐름은 건재"…저가 매수 시각도</h3>
+        <p>속도조절론발 매도세로 미국 반도체주가 크게 흔들린 가운데, 일부 투자은행과 애널리스트들은 AI 인프라 투자 사이클 자체는 훼손되지 않았다며 이번 조정을 저가 매수 기회로 보는 시각을 내놨습니다.</p>
+        <span class="stamp">인베스팅닷컴 · 9/15</span>
+      </li>
+      <li>
+        <h3>AI 수익성 회의론 부상…국내 반도체 밸류에이션 재조정 가능성</h3>
+        <p>빅테크 실적 발표 이후 AI 투자 대비 수익성에 대한 의문이 커지면서, 그간 'AI 열풍→HBM 수요 폭증→실적 개선' 공식으로 움직이던 삼성전자·SK하이닉스 등 국내 반도체주의 밸류에이션이 재점검받는 국면에 들어섰다는 분석이 나옵니다.</p>
+        <span class="stamp">지오의 시장 읽기 · 9/15</span>
+      </li>
+      <li>
+        <h3>GC녹십자, AI-GMP 국책과제 선정…AI 신약개발 투자 확대</h3>
+        <p>GC녹십자가 AI 기반 의약품 제조품질관리(AI-GMP) 국책과제에 선정되며 AI 신약개발 투자를 늘리고 있습니다. 2026년 상반기 매출은 8,567억원으로, 이 중 10.0%인 859억원을 연구개발에 투입해 전년 동기 대비 3.8% 늘었습니다.</p>
+        <span class="stamp">한국데이터경제신문 · 9월 2주차</span>
+      </li>
+    </ol>
+  </section>
+
+  <div class="takeaway">
+    <div class="en">Bottom line</div>
+    <h2>오늘 기억할 세 가지</h2>
+    <ul>
+      <li>수원은 오늘(9/16, 수) 하루 종일 맑고 낮 최고 28도·새벽 14도 안팎이며, 내일(9/17, 목)은 구름이 많아지지만 최고 27도·최저 17도로 강수 없이 포근한 날씨가 이어집니다.</li>
+      <li>어제(9/15) 국내 증시는 미 국채 금리 5% 재돌파와 유가 급등 여파로 코스피가 0.85% 내린 6,627.26에 마감했지만, 코스닥은 0.70% 오른 812.41로 반대로 움직였습니다. 원/달러 환율은 1,359.4원으로 올랐고, 미국 3대 지수(다우·S&amp;P500·나스닥)는 AI 속도조절론에 따른 반도체주 급락 여파로 나란히 하락 마감했습니다.</li>
+      <li>앤트로픽·오픈AI·xAI 수장들이 잇따라 AI 개발 속도조절을 촉구하며 소프트뱅크·SK하이닉스·삼성전자 등 아시아 반도체주가 급락했지만, 정작 AI 서버 수요 현장은 여전히 품귀 상태라는 상반된 목소리도 나옵니다. 일부 투자은행은 이번 조정을 장기 투자 흐름은 건재한 저가 매수 기회로 보고 있습니다.</li>
+    </ul>
+  </div>
+
+  <div class="sources">
+    <h4>출처 확인하기</h4>
+    <a href="https://www.edaily.co.kr/News/Read?newsId=04086886645580448" target="_blank" rel="noopener">이데일리 · [속보]코스피, 0.85% 내린 6727p...코스닥, 0.7% 오른 812p 마감</a>
+    <a href="https://view.asiae.co.kr/article/2026091515343189880" target="_blank" rel="noopener">아시아경제 · 코스닥, 5.62P 오른 812.41 마감(0.7%↑)</a>
+    <a href="https://www.mt.co.kr/economy/2026/09/15/2026091515343525913" target="_blank" rel="noopener">머니투데이 · 원/달러 환율, 12.1원 오른 1359.4원</a>
+    <a href="https://www.g-enews.com/article/Global-Biz/2026/09/2026091420052390569a1f309431_1" target="_blank" rel="noopener">글로벌이코노믹 · AI 감속론에 아시아 기술주 급락…소프트뱅크 13%↓</a>
+    <a href="https://www.ajunews.com/view/20260915133036624" target="_blank" rel="noopener">아주경제 · "개발 멈추자는 말 아냐"…반도체주 흔든 'AI 속도 조절론' 뜯어보니</a>
+    <a href="https://www.g-enews.com/article/Global-Biz/2026/09/202609140712548069fbbec65dfb_1" target="_blank" rel="noopener">글로벌이코노믹 · "개발 속도 늦추자" 아우성에도… AI 서버 현장은 여전히 품귀다</a>
+    <a href="https://kr.investing.com/news/stock-market-news/article-2094265" target="_blank" rel="noopener">인베스팅닷컴(The Guru) · AI 조절론에 美 반도체주 급락…'저가 매수 기회' 시각도</a>
+    <a href="https://www.new1cm.com/2026/09/2026-09-15-ai.html" target="_blank" rel="noopener">지오의 시장 읽기 · 2026년 09월 15일 — AI 수익성 회의론과 규제 리스크 본격화</a>
+    <a href="https://www.dataeconomy.co.kr/news/articleView.html?idxno=42647" target="_blank" rel="noopener">한국데이터경제신문 · [AI신약브리핑] 2026년 9월 2째 주 AI 신약개발 동향</a>
+    <a href="https://www.weather.go.kr/w/forecast/overall/short-term.do" target="_blank" rel="noopener">기상청 날씨누리 · 단기예보(동네예보) 수원 지점</a>
+  </div>
+
+  <footer>
+    Claude가 공개 자료를 종합해 자동 생성한 브리핑입니다. 수치는 작성 시점 기준이며, 투자 판단의 근거로 삼기 전에 원문과 실시간 시세를 반드시 확인하세요. 투자 자문이 아닙니다.
+  </footer>
+
+</div>
+</body>
+</html>
