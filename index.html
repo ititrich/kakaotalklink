@@ -1,1 +1,329 @@
 &lt;!DOCTYPE html&gt;
+&lt;html lang="ko"&gt;
+&lt;head&gt;
+&lt;meta charset="utf-8"&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+&lt;title&gt;데일리 브리핑 · 2026.09.27&lt;/title&gt;
+&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
+&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;
+&lt;link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet"&gt;
+&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"&gt;
+&lt;style&gt;
+:root{
+  --bg:#E7EBEF;
+  --surface:#FBFCFD;
+  --ink:#111820;
+  --ink-2:#4A5866;
+  --ink-3:#8A97A3;
+  --rule:#C8D2DA;
+  --sky:#1C6E9E;
+  --market:#A63D28;
+  --ai:#57468C;
+  --pos:#C0392B;
+  --neg:#1F6FB2;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:Pretendard,-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo',sans-serif;
+  font-size:16px;line-height:1.65;
+  padding:0 20px 72px;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:760px;margin:0 auto}
+
+/* ---------- masthead ---------- */
+.masthead{padding:44px 0 22px;border-bottom:2px solid var(--ink)}
+.kicker{
+  font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ink-3);margin-bottom:14px;
+}
+.masthead h1{
+  font-family:'Nanum Myeongjo',serif;font-weight:800;
+  font-size:clamp(34px,9vw,54px);line-height:1.05;letter-spacing:-.02em;
+}
+.masthead .date{
+  display:flex;flex-wrap:wrap;gap:6px 16px;align-items:baseline;
+  margin-top:14px;font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--ink-2);
+}
+.masthead .date b{font-weight:600;color:var(--ink)}
+
+/* ---------- ledger (signature) ---------- */
+.ledger{
+  display:grid;grid-template-columns:1fr;
+  border-bottom:1px solid var(--rule);
+}
+.ledger .cell{
+  display:grid;grid-template-columns:70px 1fr;gap:16px;align-items:baseline;
+  padding:18px 0;border-bottom:1px solid var(--rule);
+}
+.ledger .cell:last-child{border-bottom:none}
+.ledger .tag{
+  font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.16em;
+  text-transform:uppercase;padding-top:6px;
+}
+.ledger .tag.sky{color:var(--sky)}
+.ledger .tag.market{color:var(--market)}
+.ledger .tag.ai{color:var(--ai)}
+.ledger .figure{
+  font-family:'IBM Plex Mono',monospace;font-weight:600;
+  font-size:clamp(22px,6vw,30px);line-height:1.2;letter-spacing:-.02em;
+}
+.ledger .sub{font-size:13.5px;color:var(--ink-2);margin-top:3px}
+
+/* ---------- sections ---------- */
+section{margin-top:52px}
+.head{
+  display:flex;align-items:center;gap:12px;
+  padding-bottom:10px;margin-bottom:22px;border-bottom:1px solid var(--ink);
+}
+.spine{width:5px;height:26px;border-radius:1px;flex:none}
+.s-sky .spine{background:var(--sky)}
+.s-market .spine{background:var(--market)}
+.s-ai .spine{background:var(--ai)}
+.head h2{font-family:'Nanum Myeongjo',serif;font-size:24px;font-weight:800;letter-spacing:-.01em}
+.head .en{
+  margin-left:auto;font-family:'IBM Plex Mono',monospace;font-size:10px;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);
+}
+
+.card{background:var(--surface);border:1px solid var(--rule);border-radius:3px;padding:20px}
+.card + .card{margin-top:12px}
+
+/* weather */
+.wx{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:3px;overflow:hidden}
+.wx div{background:var(--surface);padding:18px 16px}
+.wx .lab{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.16em;color:var(--ink-3);text-transform:uppercase}
+.wx .val{font-family:'IBM Plex Mono',monospace;font-size:26px;font-weight:600;margin-top:6px;letter-spacing:-.02em}
+.wx .note{font-size:13px;color:var(--ink-2);margin-top:2px}
+.advice{
+  margin-top:12px;padding:14px 16px;border-left:4px solid var(--sky);
+  background:var(--surface);font-size:14.5px;color:var(--ink-2);
+}
+.advice b{color:var(--ink);font-weight:600}
+
+/* market table */
+table{width:100%;border-collapse:collapse;background:var(--surface);border:1px solid var(--rule);border-radius:3px}
+th,td{padding:13px 14px;text-align:right;border-bottom:1px solid var(--rule);font-family:'IBM Plex Mono',monospace;font-size:14px}
+th{
+  font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);
+  font-weight:500;background:transparent;
+}
+th:first-child,td:first-child{text-align:left;font-family:Pretendard,sans-serif;font-size:14.5px;font-weight:600}
+tr:last-child td{border-bottom:none}
+.up{color:var(--pos)}
+.down{color:var(--neg)}
+.closed{color:var(--ink-3);font-size:11px;font-weight:500}
+
+/* ai list */
+ol.news{list-style:none;counter-reset:n}
+ol.news li{
+  counter-increment:n;background:var(--surface);border:1px solid var(--rule);
+  border-radius:3px;padding:18px 20px 18px 20px;position:relative;
+}
+ol.news li + li{margin-top:10px}
+ol.news li::before{
+  content:counter(n,decimal-leading-zero);
+  font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;
+  color:var(--ai);display:block;margin-bottom:8px;
+}
+ol.news h3{font-size:16.5px;font-weight:700;line-height:1.45;letter-spacing:-.01em}
+ol.news p{font-size:14px;color:var(--ink-2);margin-top:6px}
+.stamp{
+  display:inline-block;margin-top:10px;font-family:'IBM Plex Mono',monospace;
+  font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);
+  border:1px solid var(--rule);border-radius:2px;padding:3px 8px;
+}
+
+/* takeaway */
+.takeaway{
+  margin-top:52px;background:var(--ink);color:#E7EBEF;border-radius:3px;padding:28px 24px;
+}
+.takeaway .en{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#8A97A3}
+.takeaway h2{font-family:'Nanum Myeongjo',serif;font-size:22px;font-weight:800;margin:10px 0 14px}
+.takeaway ul{list-style:none}
+.takeaway li{padding-left:18px;position:relative;font-size:15px;color:#C8D2DA;margin-top:9px}
+.takeaway li::before{content:"—";position:absolute;left:0;color:#5A6874}
+
+/* sources */
+.sources{margin-top:44px;padding-top:20px;border-top:1px solid var(--rule)}
+.sources h4{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);margin-bottom:12px}
+.sources a{display:block;color:var(--ink-2);font-size:13.5px;text-decoration:none;padding:5px 0;border-bottom:1px dotted var(--rule)}
+.sources a:hover,.sources a:focus{color:var(--sky)}
+footer{margin-top:36px;font-size:12.5px;color:var(--ink-3);line-height:1.7}
+
+@media(min-width:640px){
+  .ledger{grid-template-columns:repeat(3,1fr);gap:0}
+  .ledger .cell{
+    grid-template-columns:1fr;gap:0;border-bottom:none;border-right:1px solid var(--rule);
+    padding:22px 20px 22px 0;
+  }
+  .ledger .cell:first-child{padding-left:0}
+  .ledger .cell:not(:first-child){padding-left:20px}
+  .ledger .cell:last-child{border-right:none}
+  .ledger .tag{padding-top:0;margin-bottom:8px}
+}
+@media(prefers-reduced-motion:no-preference){
+  .card,ol.news li,.wx,table{animation:rise .5s ease both}
+  @keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+}
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div class="wrap"&gt;
+
+  &lt;header class="masthead"&gt;
+    &lt;div class="kicker"&gt;Daily Brief · Suwon&lt;/div&gt;
+    &lt;h1&gt;오늘의 종합 브리핑&lt;/h1&gt;
+    &lt;div class="date"&gt;
+      &lt;span&gt;&lt;b&gt;2026년 9월 27일&lt;/b&gt; 일요일&lt;/span&gt;
+      &lt;span&gt;날씨 · 증시 · AI&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/header&gt;
+
+  &lt;div class="ledger"&gt;
+    &lt;div class="cell"&gt;
+      &lt;div class="tag sky"&gt;Weather&lt;/div&gt;
+      &lt;div&gt;
+        &lt;div class="figure"&gt;27° / 17°&lt;/div&gt;
+        &lt;div class="sub"&gt;수원, 오늘은 대체로 맑고 강수 없음 · 내일(9/28,월)은 25°/18°, 오전 한때 흐린 뒤 갬&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="cell"&gt;
+      &lt;div class="tag market"&gt;Market&lt;/div&gt;
+      &lt;div&gt;
+        &lt;div class="figure"&gt;국내 증시 휴장&lt;/div&gt;
+        &lt;div class="sub"&gt;추석 연휴 마지막 날(~9/27) · 직전 종가 코스피 7,080.92(9/23) · 환율 1,358.4원 · 나스닥 27,068.72(+0.48%, 9/25)&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="cell"&gt;
+      &lt;div class="tag ai"&gt;AI&lt;/div&gt;
+      &lt;div&gt;
+        &lt;div class="figure"&gt;오픈AI, 자체 AI칩 '할라페뇨' 실측 성능 공개&lt;/div&gt;
+        &lt;div class="sub"&gt;앤트로픽 "위험 요청도 과금" · 국내 스타트업 9월 9100억원 투자유치&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;!-- ── 날씨 ── --&gt;
+  &lt;section class="s-sky"&gt;
+    &lt;div class="head"&gt;&lt;span class="spine"&gt;&lt;/span&gt;&lt;h2&gt;날씨&lt;/h2&gt;&lt;span class="en"&gt;Suwon, Gyeonggi&lt;/span&gt;&lt;/div&gt;
+
+    &lt;div class="wx"&gt;
+      &lt;div&gt;
+        &lt;div class="lab"&gt;오늘 · 9/27&lt;/div&gt;
+        &lt;div class="val"&gt;27° / 17°&lt;/div&gt;
+        &lt;div class="note"&gt;추석 연휴 마지막 날인 일요일 오늘, 수원은 대체로 맑은 하늘 아래 강수 없이 흘러가겠음. 오전 한때 구름이 다소 낀 시간대가 있으나 비 소식은 없으며, 낮 최고기온은 27도, 아침 최저기온은 17도 안팎으로 예보됨&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+        &lt;div class="lab"&gt;내일 · 9/28&lt;/div&gt;
+        &lt;div class="val"&gt;25° / 18°&lt;/div&gt;
+        &lt;div class="note"&gt;연휴 이후 첫 거래일인 내일 월요일은 낮 최고 25도, 아침 최저 18도로 예보됨. 새벽~오전 사이 구름이 많아지며 강수확률이 20~30%까지 오르지만 실제 비로 이어지지는 않을 전망이며, 낮부터는 다시 맑아짐&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+        &lt;div class="lab"&gt;바람&lt;/div&gt;
+        &lt;div class="val" style="font-size:22px"&gt;2~3.5m/s&lt;/div&gt;
+        &lt;div class="note"&gt;기상청 동네예보 기준, 오늘은 낮 시간대(15~17시) 풍속이 2m/s 안팎으로 약하게 불고, 내일은 오후 한때 3.5m/s까지 다소 강해질 것으로 예보됨. 전반적으로 강한 바람은 없음&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+        &lt;div class="lab"&gt;자외선&lt;/div&gt;
+        &lt;div class="val" style="font-size:22px"&gt;확인 불가&lt;/div&gt;
+        &lt;div class="note"&gt;오늘·내일 수원 지역 자외선지수는 이번 검색에서 확인하지 못함. 맑은 날씨가 이어지는 만큼 한낮 야외활동 시 기본적인 자외선 대비를 권장&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class="advice"&gt;
+      &lt;b&gt;오늘 챙길 것.&lt;/b&gt; 수원은 오늘(9/27, 일·연휴 마지막 날) 대체로 맑고 강수 없이 최고 27도·최저 17도로 완연한 가을 날씨입니다. 내일(9/28, 월·연휴 이후 첫 거래일)은 오전 한때 흐려지며 강수확률이 오르지만 비로 이어지지는 않고, 낮 최고 25도·아침 최저 18도로 선선해지니 아침저녁 겉옷을 챙기시는 것이 좋습니다.
+    &lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;!-- ── 증시 ── --&gt;
+  &lt;section class="s-market"&gt;
+    &lt;div class="head"&gt;&lt;span class="spine"&gt;&lt;/span&gt;&lt;h2&gt;증시&lt;/h2&gt;&lt;span class="en"&gt;Latest Close&lt;/span&gt;&lt;/div&gt;
+
+    &lt;table&gt;
+      &lt;thead&gt;
+        &lt;tr&gt;&lt;th&gt;지표&lt;/th&gt;&lt;th&gt;종가&lt;/th&gt;&lt;th&gt;등락&lt;/th&gt;&lt;/tr&gt;
+      &lt;/thead&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;&lt;td&gt;코스피 &lt;span class="closed"&gt;9/27(일) 휴장·추석연휴&lt;/span&gt;&lt;/td&gt;&lt;td&gt;7,080.92&lt;/td&gt;&lt;td class="up"&gt;+63.01 (+0.90%)&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;코스닥 &lt;span class="closed"&gt;9/27(일) 휴장·추석연휴&lt;/span&gt;&lt;/td&gt;&lt;td&gt;844.48&lt;/td&gt;&lt;td class="up"&gt;+10.10 (+1.21%)&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;원/달러 &lt;span class="closed"&gt;9/23(수) 15:30&lt;/span&gt;&lt;/td&gt;&lt;td&gt;1,358.4&lt;/td&gt;&lt;td class="up"&gt;+0.2원(보합)&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;다우 &lt;span style="font-weight:400;color:var(--ink-3);font-size:12px"&gt;9/25(금·현지) 종가&lt;/span&gt;&lt;/td&gt;&lt;td&gt;51,828.62&lt;/td&gt;&lt;td class="up"&gt;+478.64 (+0.93%)&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;S&amp;P500 &lt;span style="font-weight:400;color:var(--ink-3);font-size:12px"&gt;9/25(금·현지) 종가&lt;/span&gt;&lt;/td&gt;&lt;td&gt;7,743.41&lt;/td&gt;&lt;td class="up"&gt;+39.28 (+0.51%)&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;나스닥 &lt;span style="font-weight:400;color:var(--ink-3);font-size:12px"&gt;9/25(금·현지) 종가&lt;/span&gt;&lt;/td&gt;&lt;td&gt;27,068.72&lt;/td&gt;&lt;td class="up"&gt;+129.34 (+0.48%)&lt;/td&gt;&lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+    &lt;p class="closed" style="margin-top:8px"&gt;국내 증시(코스피·코스닥)는 추석 연휴로 9/24(목)~9/27(일) 나흘간 휴장하며, 표의 수치는 직전 거래일인 9/23(수) 종가입니다. 원/달러 환율도 9/23(수) 15:30 매매기준율 기준입니다. 미국 증시는 한국이 휴장인 동안에도 정상 거래해 9/25(금·현지) 종가를 표기했습니다.&lt;/p&gt;
+
+    &lt;div class="card" style="margin-top:12px"&gt;
+      &lt;h3 style="font-size:16px;font-weight:700;margin-bottom:8px"&gt;한 줄 해석&lt;/h3&gt;
+      &lt;p style="font-size:14.5px;color:var(--ink-2)"&gt;국내 증시는 추석 연휴 나흘째인 오늘(9/27, 일)까지 휴장하며 내일(9/28, 월)부터 정상 개장합니다. 직전 거래일인 9/23(수) 코스피는 63.01포인트(0.90%) 오른 7,080.92, 코스닥은 10.10포인트(1.21%) 오른 844.48로 마감해 이틀 연속 강세로 연휴를 맞았습니다. 같은 기간 미국 증시는 정상 거래를 이어가며 9/25(금·현지) 다우(+0.93%)·S&amp;P500(+0.51%)·나스닥(+0.48%) 3대 지수가 모두 상승 마감했습니다. 연휴 동안 뉴욕 증시의 강세가 이어진 만큼, 내일(9/28) 개장하는 국내 증시에서 반도체·AI 관련주가 이 흐름을 얼마나 이어받을지 주목됩니다.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;!-- ── AI ── --&gt;
+  &lt;section class="s-ai"&gt;
+    &lt;div class="head"&gt;&lt;span class="spine"&gt;&lt;/span&gt;&lt;h2&gt;AI 최신 뉴스&lt;/h2&gt;&lt;span class="en"&gt;Last 72h&lt;/span&gt;&lt;/div&gt;
+
+    &lt;ol class="news"&gt;
+      &lt;li&gt;
+        &lt;h3&gt;오픈AI, 자체 AI 추론칩 '할라페뇨' 실측 성능 첫 공개&lt;/h3&gt;
+        &lt;p&gt;오픈AI가 브로드컴과 공동 개발한 첫 자체 설계 AI 추론칩 '할라페뇨'의 실측 벤치마크 결과를 발표했습니다. 와트당 처리량이 기존 대비 최대 1.9배 높고 응답 지연은 1.7~3.6배 줄었다고 밝혔으며, 챗GPT 등 서비스 운영에 드는 추론 비용을 낮추고 엔비디아 GPU 의존도를 줄이려는 인프라 전략으로 풀이됩니다.&lt;/p&gt;
+        &lt;span class="stamp"&gt;해외 · 9/25&lt;/span&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;h3&gt;트럼프 "AI 국제규제 거부"…EU는 AI법 집행 강화로 노선차 부각&lt;/h3&gt;
+        &lt;p&gt;트럼프 대통령이 유엔총회 연설에서 AI를 규제할 국제 공동체계 구성을 거부하고, 문제가 생기면 기존 사법 시스템으로 대응하겠다는 입장을 밝혔습니다. 반면 EU는 위험 기반의 AI법(AI Act) 집행 단계에 들어가며 양측의 규제 접근법 차이가 다시 부각됐습니다.&lt;/p&gt;
+        &lt;span class="stamp"&gt;해외 · 9/24&lt;/span&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;h3&gt;앤트로픽, 클로드가 거부한 고위험 요청에도 과금 시작&lt;/h3&gt;
+        &lt;p&gt;앤트로픽이 클로드가 생물·사이버공격·최첨단 LLM 개발 등 최고 위험 정책 범주에 해당한다고 판단해 응답을 거부한 요청에 대해서도 입력 토큰 기준으로 과금을 시작한다고 밝혔습니다. 최근 몇 주간 자사 시스템을 겨냥한 조직적인 공격이 이어진 데 따른 방어 조치 중 하나라고 설명했습니다.&lt;/p&gt;
+        &lt;span class="stamp"&gt;해외 · 9/24&lt;/span&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;h3&gt;기업용 AI 지출, 오픈AI '아스트라'가 앤트로픽 앞질러&lt;/h3&gt;
+        &lt;p&gt;기업 지출 관리 플랫폼 램프(Ramp) 집계에 따르면 오픈AI의 'GPT-6 아스트라'가 기업용 AI 지출의 약 13%를 차지해, 앤트로픽 '클로드 페이블'(약 8%)을 앞선 것으로 나타났습니다. 컴퓨터 제어 기능과 보안성 강화가 경쟁 우위 요인으로 꼽힙니다.&lt;/p&gt;
+        &lt;span class="stamp"&gt;해외 · 9/26&lt;/span&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;h3&gt;국내 스타트업 9월 투자유치 9100억원…AI·로봇에 집중&lt;/h3&gt;
+        &lt;p&gt;9월 한 달간 국내 비상장 스타트업 10곳이 총 9100억원 규모 투자를 유치하며 올해 1~9월 누적 투자액이 약 4조원에 달했습니다. AI 에이전트 스타트업 '인핸스'는 시리즈C에서 512억원을 유치했고, 포스코·LG·롯데 계열사가 처음으로 투자자 겸 고객으로 참여했습니다.&lt;/p&gt;
+        &lt;span class="stamp"&gt;국내 · 9/26&lt;/span&gt;
+      &lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/section&gt;
+
+  &lt;div class="takeaway"&gt;
+    &lt;div class="en"&gt;Bottom line&lt;/div&gt;
+    &lt;h2&gt;오늘 기억할 세 가지&lt;/h2&gt;
+    &lt;ul&gt;
+      &lt;li&gt;수원은 오늘(9/27, 일·연휴 마지막 날) 대체로 맑고 강수 없이 최고 27도·최저 17도이며, 내일(9/28, 월)은 오전 한때 흐려도 비 소식 없이 최고 25도·최저 18도로 선선한 날씨가 이어집니다.&lt;/li&gt;
+      &lt;li&gt;국내 증시는 추석 연휴 나흘째인 오늘까지 휴장하고 내일(9/28)부터 정상 개장합니다. 직전 거래일(9/23) 코스피·코스닥은 나란히 올랐고(+0.90%, +1.21%), 연휴 중에도 미국 증시는 9/25(금) 다우·S&amp;P500·나스닥이 모두 상승(+0.48%~+0.93%) 마감했습니다.&lt;/li&gt;
+      &lt;li&gt;AI 업계에서는 오픈AI의 자체 추론칩 '할라페뇨' 실측 성능 공개와 미-EU 간 AI 규제 노선차가 해외의 화두였고, 국내에서는 9월 한 달간 9100억원 규모 스타트업 투자유치 소식이 두드러졌습니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+
+  &lt;div class="sources"&gt;
+    &lt;h4&gt;출처 확인하기&lt;/h4&gt;
+    &lt;a href="https://www.newspim.com/news/view/20260923000946" target="_blank" rel="noopener"&gt;뉴스핌 · [마감시황] 코스피, 연휴 앞둔 관망세에 상승폭 축소…7080선 안착&lt;/a&gt;
+    &lt;a href="https://www.mt.co.kr/economy/2026/09/23/2026092315301712830" target="_blank" rel="noopener"&gt;머니투데이 · 원/달러 환율, 0.2원 오른 1358.4원&lt;/a&gt;
+    &lt;a href="https://wtop.com/national/2026/09/how-major-us-stock-indexes-fared-friday-9-25-2026" target="_blank" rel="noopener"&gt;WTOP(AP) · How major US stock indexes fared Friday 9/25/2026&lt;/a&gt;
+    &lt;a href="https://www.weather.go.kr/" target="_blank" rel="noopener"&gt;기상청 날씨누리 · 수원 동네예보(단기예보)&lt;/a&gt;
+    &lt;a href="https://www.aitimes.kr/news/articleView.html?idxno=41603" target="_blank" rel="noopener"&gt;인공지능신문 · 오픈AI, 자체 AI 추론칩 '할라페뇨' 성능 전격 공개&lt;/a&gt;
+    &lt;a href="https://www.seoul.co.kr/news/economy/IT/2026/09/24/20260924002003" target="_blank" rel="noopener"&gt;서울신문 · 美 "AI 국제적 통제 거부" vs EU "위험 관리 나서야"&lt;/a&gt;
+    &lt;a href="https://www.aitimes.com/news/articleView.html?idxno=215649" target="_blank" rel="noopener"&gt;AI타임스 · 앤트로픽, '모델 증류' 방어선 구축…거부된 클로드 요청도 과금&lt;/a&gt;
+    &lt;a href="https://officechai.com/ai/enterprises-are-spending-more-on-openais-astra-than-anthropics-fable-says-ramp-data/" target="_blank" rel="noopener"&gt;officechai · Enterprises Are Spending More On OpenAI's Astra Than Anthropic's Fable, Says Ramp Data&lt;/a&gt;
+    &lt;a href="https://www.mt.co.kr/future/2026/09/20/2026092010515930512" target="_blank" rel="noopener"&gt;머니투데이 · 512억 '메가딜' 성사…스타트업 투자 대세는 AI&lt;/a&gt;
+  &lt;/div&gt;
+
+  &lt;footer&gt;
+    Claude가 공개 자료를 종합해 자동 생성한 브리핑입니다. 수치는 작성 시점 기준이며, 투자 판단의 근거로 삼기 전에 원문과 실시간 시세를 반드시 확인하세요. 투자 자문이 아닙니다.
+  &lt;/footer&gt;
+
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
