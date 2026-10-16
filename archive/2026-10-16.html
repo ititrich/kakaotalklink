@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>데일리 브리핑 · 2026.10.16</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+:root{
+  --bg:#E7EBEF;
+  --surface:#FBFCFD;
+  --ink:#111820;
+  --ink-2:#4A5866;
+  --ink-3:#8A97A3;
+  --rule:#C8D2DA;
+  --sky:#1C6E9E;
+  --market:#A63D28;
+  --ai:#57468C;
+  --pos:#C0392B;
+  --neg:#1F6FB2;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:Pretendard,-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo',sans-serif;
+  font-size:16px;line-height:1.65;
+  padding:0 20px 72px;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:760px;margin:0 auto}
+
+/* ---------- masthead ---------- */
+.masthead{padding:44px 0 22px;border-bottom:2px solid var(--ink)}
+.kicker{
+  font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ink-3);margin-bottom:14px;
+}
+.masthead h1{
+  font-family:'Nanum Myeongjo',serif;font-weight:800;
+  font-size:clamp(34px,9vw,54px);line-height:1.05;letter-spacing:-.02em;
+}
+.masthead .date{
+  display:flex;flex-wrap:wrap;gap:6px 16px;align-items:baseline;
+  margin-top:14px;font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--ink-2);
+}
+.masthead .date b{font-weight:600;color:var(--ink)}
+
+/* ---------- ledger (signature) ---------- */
+.ledger{
+  display:grid;grid-template-columns:1fr;
+  border-bottom:1px solid var(--rule);
+}
+.ledger .cell{
+  display:grid;grid-template-columns:70px 1fr;gap:16px;align-items:baseline;
+  padding:18px 0;border-bottom:1px solid var(--rule);
+}
+.ledger .cell:last-child{border-bottom:none}
+.ledger .tag{
+  font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.16em;
+  text-transform:uppercase;padding-top:6px;
+}
+.ledger .tag.sky{color:var(--sky)}
+.ledger .tag.market{color:var(--market)}
+.ledger .tag.ai{color:var(--ai)}
+.ledger .figure{
+  font-family:'IBM Plex Mono',monospace;font-weight:600;
+  font-size:clamp(22px,6vw,30px);line-height:1.2;letter-spacing:-.02em;
+}
+.ledger .sub{font-size:13.5px;color:var(--ink-2);margin-top:3px}
+
+/* ---------- sections ---------- */
+section{margin-top:52px}
+.head{
+  display:flex;align-items:center;gap:12px;
+  padding-bottom:10px;margin-bottom:22px;border-bottom:1px solid var(--ink);
+}
+.spine{width:5px;height:26px;border-radius:1px;flex:none}
+.s-sky .spine{background:var(--sky)}
+.s-market .spine{background:var(--market)}
+.s-ai .spine{background:var(--ai)}
+.head h2{font-family:'Nanum Myeongjo',serif;font-size:24px;font-weight:800;letter-spacing:-.01em}
+.head .en{
+  margin-left:auto;font-family:'IBM Plex Mono',monospace;font-size:10px;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);
+}
+
+.card{background:var(--surface);border:1px solid var(--rule);border-radius:3px;padding:20px}
+.card + .card{margin-top:12px}
+
+/* weather */
+.wx{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:3px;overflow:hidden}
+.wx div{background:var(--surface);padding:18px 16px}
+.wx .lab{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.16em;color:var(--ink-3);text-transform:uppercase}
+.wx .val{font-family:'IBM Plex Mono',monospace;font-size:26px;font-weight:600;margin-top:6px;letter-spacing:-.02em}
+.wx .note{font-size:13px;color:var(--ink-2);margin-top:2px}
+.advice{
+  margin-top:12px;padding:14px 16px;border-left:4px solid var(--sky);
+  background:var(--surface);font-size:14.5px;color:var(--ink-2);
+}
+.advice b{color:var(--ink);font-weight:600}
+
+/* market table */
+table{width:100%;border-collapse:collapse;background:var(--surface);border:1px solid var(--rule);border-radius:3px}
+th,td{padding:13px 14px;text-align:right;border-bottom:1px solid var(--rule);font-family:'IBM Plex Mono',monospace;font-size:14px}
+th{
+  font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);
+  font-weight:500;background:transparent;
+}
+th:first-child,td:first-child{text-align:left;font-family:Pretendard,sans-serif;font-size:14.5px;font-weight:600}
+tr:last-child td{border-bottom:none}
+.up{color:var(--pos)}
+.down{color:var(--neg)}
+.closed{color:var(--ink-3);font-size:11px;font-weight:500}
+
+/* ai list */
+ol.news{list-style:none;counter-reset:n}
+ol.news li{
+  counter-increment:n;background:var(--surface);border:1px solid var(--rule);
+  border-radius:3px;padding:18px 20px 18px 20px;position:relative;
+}
+ol.news li + li{margin-top:10px}
+ol.news li::before{
+  content:counter(n,decimal-leading-zero);
+  font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;
+  color:var(--ai);display:block;margin-bottom:8px;
+}
+ol.news h3{font-size:16.5px;font-weight:700;line-height:1.45;letter-spacing:-.01em}
+ol.news p{font-size:14px;color:var(--ink-2);margin-top:6px}
+.stamp{
+  display:inline-block;margin-top:10px;font-family:'IBM Plex Mono',monospace;
+  font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);
+  border:1px solid var(--rule);border-radius:2px;padding:3px 8px;
+}
+
+/* takeaway */
+.takeaway{
+  margin-top:52px;background:var(--ink);color:#E7EBEF;border-radius:3px;padding:28px 24px;
+}
+.takeaway .en{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#8A97A3}
+.takeaway h2{font-family:'Nanum Myeongjo',serif;font-size:22px;font-weight:800;margin:10px 0 14px}
+.takeaway ul{list-style:none}
+.takeaway li{padding-left:18px;position:relative;font-size:15px;color:#C8D2DA;margin-top:9px}
+.takeaway li::before{content:"—";position:absolute;left:0;color:#5A6874}
+
+/* sources */
+.sources{margin-top:44px;padding-top:20px;border-top:1px solid var(--rule)}
+.sources h4{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);margin-bottom:12px}
+.sources a{display:block;color:var(--ink-2);font-size:13.5px;text-decoration:none;padding:5px 0;border-bottom:1px dotted var(--rule)}
+.sources a:hover,.sources a:focus{color:var(--sky)}
+footer{margin-top:36px;font-size:12.5px;color:var(--ink-3);line-height:1.7}
+
+@media(min-width:640px){
+  .ledger{grid-template-columns:repeat(3,1fr);gap:0}
+  .ledger .cell{
+    grid-template-columns:1fr;gap:0;border-bottom:none;border-right:1px solid var(--rule);
+    padding:22px 20px 22px 0;
+  }
+  .ledger .cell:first-child{padding-left:0}
+  .ledger .cell:not(:first-child){padding-left:20px}
+  .ledger .cell:last-child{border-right:none}
+  .ledger .tag{padding-top:0;margin-bottom:8px}
+}
+@media(prefers-reduced-motion:no-preference){
+  .card,ol.news li,.wx,table{animation:rise .5s ease both}
+  @keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+    <header class="masthead">
+    <div class="kicker">Daily Brief · Suwon</div>
+    <h1>오늘의 종합 브리핑</h1>
+    <div class="date">
+      <span><b>2026년 10월 16일</b> 금요일 · 직전 거래일 10/15(목) 종가 기준</span>
+      <span>날씨 · 증시 · AI</span>
+    </div>
+  </header>
+
+  <div class="ledger">
+    <div class="cell">
+      <div class="tag sky">Weather</div>
+      <div>
+        <div class="figure">23° / 13°</div>
+        <div class="sub">수원 · 구름 많음, 새벽까지 일부 비 · 일교차 15도 안팎</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="tag market">Market</div>
+      <div>
+        <div class="figure">코스피 5,554.22 (-7.57%)</div>
+        <div class="sub">10/15(목) 종가 · 올해 최대 낙폭 · 코스닥 760.82(-7.65%) · 환율 1,344.6원(주간 종가) · 뉴욕 10/15 S&amp;P500 +0.3%</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="tag ai">AI</div>
+      <div>
+        <div class="figure">AI 수익성 논란에 증시 급락</div>
+        <div class="sub">양 시장 서킷브레이커 · 외국인 8거래일 연속 순매도 · 미국 AI 에이전트 보안 조사 확대</div>
+      </div>
+    </div>
+  </div>
+
+  <section class="s-sky">
+    <div class="head"><span class="spine"></span><h2>날씨</h2><span class="en">Suwon, Gyeonggi</span></div>
+
+    <div class="wx">
+      <div>
+        <div class="lab">오늘 · 10/16 (금)</div>
+        <div class="val">23° / 13°</div>
+        <div class="note">수원 기준 아침 13도, 낮 23도로 보도됐습니다. 전국이 대체로 구름 많은 날씨입니다</div>
+      </div>
+      <div>
+        <div class="lab">내일 · 10/17 (토)</div>
+        <div class="val">확인 불가</div>
+        <div class="note">내일 수원 예보는 찾지 못했습니다. 기상청 날씨누리에서 확인하세요</div>
+      </div>
+      <div>
+        <div class="lab">강수 · 일교차</div>
+        <div class="val" style="font-size:22px">새벽까지</div>
+        <div class="note">비는 새벽에 그치고 경기 북서부는 5mm 미만으로 예보됐습니다. 수원 강수량은 확인하지 못했습니다. 아침과 낮 기온 차는 15도 안팎입니다</div>
+      </div>
+      <div>
+        <div class="lab">바람 · 자외선</div>
+        <div class="val" style="font-size:22px">확인 불가</div>
+        <div class="note">바람과 자외선지수는 확인하지 못했습니다</div>
+      </div>
+    </div>
+
+    <div class="advice">
+      <b>오늘 챙길 것.</b> 아침은 쌀쌀하고 낮엔 포근해 겹쳐 입기 좋은 날입니다. 이른 아침 출근길엔 남은 비를 대비해 우산을 챙기면 안심입니다.
+    </div>
+  </section>
+
+  <section class="s-market">
+    <div class="head"><span class="spine"></span><h2>증시</h2><span class="en">Latest Close</span></div>
+
+    <table>
+      <thead>
+        <tr><th>지표</th><th>종가</th><th>등락</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>코스피 <span class="closed">10/15(목) 종가</span></td><td>5,554.22</td><td class="down">-454.59 (-7.57%)</td></tr>
+        <tr><td>코스닥 <span class="closed">10/15(목) 종가</span></td><td>760.82</td><td class="down">-63.06 (-7.65%)</td></tr>
+        <tr><td>원/달러 <span class="closed">10/15(목) 주간거래 종가</span></td><td>1,344.6</td><td class="up">+6.3원</td></tr>
+        <tr><td>다우 <span style="font-weight:400;color:var(--ink-3);font-size:12px">10/15(목·현지) 종가</span></td><td>확인 불가</td><td class="up">약 +1.1%</td></tr>
+        <tr><td>S&amp;P500 <span style="font-weight:400;color:var(--ink-3);font-size:12px">10/15(목·현지) 종가</span></td><td>7,744.06</td><td class="up">약 +0.3%</td></tr>
+        <tr><td>나스닥 <span style="font-weight:400;color:var(--ink-3);font-size:12px">10/15(목·현지) 종가</span></td><td>확인 불가</td><td class="up">약 +0.1%</td></tr>
+      </tbody>
+    </table>
+    <p class="closed" style="margin-top:8px">국내 수치는 10/15(목) 정규장 마감 기준입니다. 미국은 AP 보도 기준 등락률이며 다우·나스닥 종가 수치는 두 번째 출처로 확인하지 못했습니다. 정확한 확정치는 거래소 자료로 확인하세요.</p>
+
+    <div class="card" style="margin-top:12px">
+      <h3 style="font-size:16px;font-weight:700;margin-bottom:8px">한 줄 해석</h3>
+      <p style="font-size:14.5px;color:var(--ink-2)">코스피는 장 초반 5,750선까지 올랐다가 급락 전환해 5,550선에서 마쳤고, 하락 폭은 올해 들어 가장 컸습니다. 외국인은 코스피에서 약 3.6조 원을 팔아 8거래일 연속 순매도였고, 오후엔 두 시장 모두 거래가 잠시 멈추는 서킷브레이커가 작동했습니다. 보도는 AI 투자 수익성 논란이 다시 부각된 점을 배경으로 짚었습니다. 앞으로의 전망을 뜻하지는 않습니다.</p>
+    </div>
+  </section>
+
+  <section class="s-ai">
+    <div class="head"><span class="spine"></span><h2>AI 최신 뉴스</h2><span class="en">Last 72h</span></div>
+
+    <ol class="news">
+      <li>
+        <h3>AI 수익성 논란 재부각, 코스피·코스닥 7%대 폭락</h3>
+        <p>코스피는 5,554.22, 코스닥은 760.82로 마감하며 둘 다 7%를 넘게 내렸습니다. 매도 사이드카에 이어 서킷브레이커까지 발동됐고, 연합뉴스는 AI 투자의 수익성 논란을 배경으로 꼽았습니다.</p>
+        <span class="stamp">국내 · 10/15</span>
+      </li>
+      <li>
+        <h3>미국 FTC, 오픈AI·앤트로픽 등 AI 에이전트 보안 문제 조사 확대</h3>
+        <p>AI 에이전트 해킹 논란을 계기로 두 회사에 자료 제출을 요구했고 경영진 소환도 예정됐다는 보도가 나왔습니다. 외신은 조사가 9월 말 알려졌고 정식 증언 요구는 몇 주 안에 나올 전망이라고 전했습니다.</p>
+        <span class="stamp">해외 · 10/15 보도</span>
+      </li>
+      <li>
+        <h3>EU, AI법 첫 집행 착수 보도…오픈AI·앤트로픽 사고 대상</h3>
+        <p>국내 매체는 EU 집행위가 두 회사의 에이전트 보안 사고를 대상으로 AI법 집행을 시작했다고 전했습니다. 다만 EU 쪽 공식 발표는 확인하지 못했습니다.</p>
+        <span class="stamp">해외 · 10/15 보도</span>
+      </li>
+      <li>
+        <h3>오픈AI·앤트로픽, 저가 고성능 중국산 오픈 모델의 보안 위험 경고</h3>
+        <p>두 회사는 값싸고 성능 좋은 중국산 공개 모델이 사이버 보안 위험을 키울 수 있다고 밝혔다고 합니다. 구글 딥마인드의 허사비스는 잇따른 에이전트 해킹을 보안 강화의 조기 경고로 봤습니다.</p>
+        <span class="stamp">국내 보도 · 10/15 전후</span>
+      </li>
+      <li>
+        <h3>미국 8개 주, 오픈AI 상대 집단 소송 제기 보도</h3>
+        <p>소비자 관련 소송이라는 AI타임스 보도가 있었지만, 세부 청구 내용은 확인하지 못했습니다.</p>
+        <span class="stamp">해외 · 10/15 전후</span>
+      </li>
+    </ol>
+  </section>
+
+  <div class="takeaway">
+    <div class="en">Bottom line</div>
+    <h2>오늘 기억할 세 가지</h2>
+    <ul>
+      <li>수원은 아침 13도, 낮 23도로 일교차가 큽니다. 비는 새벽에 그칠 전망입니다. 바람·자외선·내일 예보는 확인 불가입니다.</li>
+      <li>어제(10/15) 코스피는 5,554.22(-7.57%), 코스닥은 760.82(-7.65%)로 마감했고 환율은 1,344.6원이었습니다. 외국인은 8거래일 연속 순매도했습니다.</li>
+      <li>뉴욕은 같은 날 S&amp;P500이 약 0.3%, 다우가 약 1.1% 올랐습니다. AI 에이전트 보안을 둘러싼 미국·EU 규제 움직임이 이어지고 있습니다.</li>
+    </ul>
+  </div>
+
+  <div class="sources">
+    <h4>출처 확인하기</h4>
+    <a href="https://www.newspim.com/news/view/20261015001061" target="_blank" rel="noopener">뉴스핌 · '검은 목요일' 코스피·코스닥 7%대 급락 (10/15)</a>
+    <a href="https://www.pinpointnews.co.kr/news/articleView.html?idxno=495719" target="_blank" rel="noopener">핀포인트뉴스 · 10월 15일 매매동향</a>
+    <a href="https://www.slist.kr/news/articleView.html?idxno=773739" target="_blank" rel="noopener">싱글리스트 · 코스피 7.56% 폭락 5,550선 마감 (10/15)</a>
+    <a href="https://www.specialtimes.co.kr/news/articleView.html?idxno=474533" target="_blank" rel="noopener">스페셜타임스 · 외국인 10월 코스피 17조 원대 순매도</a>
+    <a href="https://kare11.com/article/syndication/associatedpress/how-major-us-stock-indexes-fared-thursday-10152026/616-45863d85-4e3b-4f71-879a-08f0c61ea824" target="_blank" rel="noopener">AP · How major US stock indexes fared Thursday 10/15/2026</a>
+    <a href="https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-oct-15-2026" target="_blank" rel="noopener">TheStreet · Stock Market Today (10/15)</a>
+    <a href="https://www.dailian.co.kr/news/view/1702128/%EB%82%B4%EC%9D%BC-%EB%82%A0%EC%94%A8-%EC%95%84%EC%B9%A8%EC%97%94-%EC%8C%80%EC%8C%80-%ED%95%9C%EB%82%AE%EC%97%94-%ED%8F%AC%EA%B7%BC%EC%88%98-2026" target="_blank" rel="noopener">데일리안 · 내일 날씨</a>
+    <a href="https://www.weather.go.kr/" target="_blank" rel="noopener">기상청 날씨누리</a>
+    <a href="https://m.news.nate.com/view/20261015n37510" target="_blank" rel="noopener">네이트 · 미 FTC 오픈AI·앤트로픽 조사 (10/15)</a>
+    <a href="https://aimatters.co.kr/news-report/55331/" target="_blank" rel="noopener">AI매터스 · EU AI법 첫 집행</a>
+    <a href="https://thenextweb.com/news/ftc-probe-openai-anthropic-ai-labs-metr" target="_blank" rel="noopener">TNW · FTC opens probe into OpenAI, Anthropic</a>
+    <a href="https://www.aitimes.com/" target="_blank" rel="noopener">AI타임스</a>
+  </div>
+
+  <footer>
+    Claude가 공개 자료를 종합해 자동 생성한 브리핑입니다. 수치는 작성 시점 기준이며, 투자 판단의 근거로 삼기 전에 원문과 실시간 시세를 반드시 확인하세요. 투자 자문이 아닙니다.
+  </footer>
+
+</div>
+</body>
+</html>
