@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>데일리 브리핑 · 2026.11.16</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+:root{
+  --bg:#E7EBEF;
+  --surface:#FBFCFD;
+  --ink:#111820;
+  --ink-2:#4A5866;
+  --ink-3:#8A97A3;
+  --rule:#C8D2DA;
+  --sky:#1C6E9E;
+  --market:#A63D28;
+  --ai:#57468C;
+  --pos:#C0392B;
+  --neg:#1F6FB2;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:Pretendard,-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo',sans-serif;
+  font-size:16px;line-height:1.65;
+  padding:0 20px 72px;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:760px;margin:0 auto}
+
+/* ---------- masthead ---------- */
+.masthead{padding:44px 0 22px;border-bottom:2px solid var(--ink)}
+.kicker{
+  font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ink-3);margin-bottom:14px;
+}
+.masthead h1{
+  font-family:'Nanum Myeongjo',serif;font-weight:800;
+  font-size:clamp(34px,9vw,54px);line-height:1.05;letter-spacing:-.02em;
+}
+.masthead .date{
+  display:flex;flex-wrap:wrap;gap:6px 16px;align-items:baseline;
+  margin-top:14px;font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--ink-2);
+}
+.masthead .date b{font-weight:600;color:var(--ink)}
+
+/* ---------- ledger (signature) ---------- */
+.ledger{
+  display:grid;grid-template-columns:1fr;
+  border-bottom:1px solid var(--rule);
+}
+.ledger .cell{
+  display:grid;grid-template-columns:70px 1fr;gap:16px;align-items:baseline;
+  padding:18px 0;border-bottom:1px solid var(--rule);
+}
+.ledger .cell:last-child{border-bottom:none}
+.ledger .tag{
+  font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.16em;
+  text-transform:uppercase;padding-top:6px;
+}
+.ledger .tag.sky{color:var(--sky)}
+.ledger .tag.market{color:var(--market)}
+.ledger .tag.ai{color:var(--ai)}
+.ledger .figure{
+  font-family:'IBM Plex Mono',monospace;font-weight:600;
+  font-size:clamp(22px,6vw,30px);line-height:1.2;letter-spacing:-.02em;
+}
+.ledger .sub{font-size:13.5px;color:var(--ink-2);margin-top:3px}
+
+/* ---------- sections ---------- */
+section{margin-top:52px}
+.head{
+  display:flex;align-items:center;gap:12px;
+  padding-bottom:10px;margin-bottom:22px;border-bottom:1px solid var(--ink);
+}
+.spine{width:5px;height:26px;border-radius:1px;flex:none}
+.s-sky .spine{background:var(--sky)}
+.s-market .spine{background:var(--market)}
+.s-ai .spine{background:var(--ai)}
+.head h2{font-family:'Nanum Myeongjo',serif;font-size:24px;font-weight:800;letter-spacing:-.01em}
+.head .en{
+  margin-left:auto;font-family:'IBM Plex Mono',monospace;font-size:10px;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);
+}
+
+.card{background:var(--surface);border:1px solid var(--rule);border-radius:3px;padding:20px}
+.card + .card{margin-top:12px}
+
+/* weather */
+.wx{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:3px;overflow:hidden}
+.wx div{background:var(--surface);padding:18px 16px}
+.wx .lab{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.16em;color:var(--ink-3);text-transform:uppercase}
+.wx .val{font-family:'IBM Plex Mono',monospace;font-size:26px;font-weight:600;margin-top:6px;letter-spacing:-.02em}
+.wx .note{font-size:13px;color:var(--ink-2);margin-top:2px}
+.advice{
+  margin-top:12px;padding:14px 16px;border-left:4px solid var(--sky);
+  background:var(--surface);font-size:14.5px;color:var(--ink-2);
+}
+.advice b{color:var(--ink);font-weight:600}
+
+/* market table */
+table{width:100%;border-collapse:collapse;background:var(--surface);border:1px solid var(--rule);border-radius:3px}
+th,td{padding:13px 14px;text-align:right;border-bottom:1px solid var(--rule);font-family:'IBM Plex Mono',monospace;font-size:14px}
+th{
+  font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);
+  font-weight:500;background:transparent;
+}
+th:first-child,td:first-child{text-align:left;font-family:Pretendard,sans-serif;font-size:14.5px;font-weight:600}
+tr:last-child td{border-bottom:none}
+.up{color:var(--pos)}
+.down{color:var(--neg)}
+.closed{color:var(--ink-3);font-size:11px;font-weight:500}
+
+/* ai list */
+ol.news{list-style:none;counter-reset:n}
+ol.news li{
+  counter-increment:n;background:var(--surface);border:1px solid var(--rule);
+  border-radius:3px;padding:18px 20px 18px 20px;position:relative;
+}
+ol.news li + li{margin-top:10px}
+ol.news li::before{
+  content:counter(n,decimal-leading-zero);
+  font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;
+  color:var(--ai);display:block;margin-bottom:8px;
+}
+ol.news h3{font-size:16.5px;font-weight:700;line-height:1.45;letter-spacing:-.01em}
+ol.news p{font-size:14px;color:var(--ink-2);margin-top:6px}
+.stamp{
+  display:inline-block;margin-top:10px;font-family:'IBM Plex Mono',monospace;
+  font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);
+  border:1px solid var(--rule);border-radius:2px;padding:3px 8px;
+}
+
+/* takeaway */
+.takeaway{
+  margin-top:52px;background:var(--ink);color:#E7EBEF;border-radius:3px;padding:28px 24px;
+}
+.takeaway .en{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#8A97A3}
+.takeaway h2{font-family:'Nanum Myeongjo',serif;font-size:22px;font-weight:800;margin:10px 0 14px}
+.takeaway ul{list-style:none}
+.takeaway li{padding-left:18px;position:relative;font-size:15px;color:#C8D2DA;margin-top:9px}
+.takeaway li::before{content:"—";position:absolute;left:0;color:#5A6874}
+
+/* sources */
+.sources{margin-top:44px;padding-top:20px;border-top:1px solid var(--rule)}
+.sources h4{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);margin-bottom:12px}
+.sources a{display:block;color:var(--ink-2);font-size:13.5px;text-decoration:none;padding:5px 0;border-bottom:1px dotted var(--rule)}
+.sources a:hover,.sources a:focus{color:var(--sky)}
+footer{margin-top:36px;font-size:12.5px;color:var(--ink-3);line-height:1.7}
+
+@media(min-width:640px){
+  .ledger{grid-template-columns:repeat(3,1fr);gap:0}
+  .ledger .cell{
+    grid-template-columns:1fr;gap:0;border-bottom:none;border-right:1px solid var(--rule);
+    padding:22px 20px 22px 0;
+  }
+  .ledger .cell:first-child{padding-left:0}
+  .ledger .cell:not(:first-child){padding-left:20px}
+  .ledger .cell:last-child{border-right:none}
+  .ledger .tag{padding-top:0;margin-bottom:8px}
+}
+@media(prefers-reduced-motion:no-preference){
+  .card,ol.news li,.wx,table{animation:rise .5s ease both}
+  @keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+    <header class="masthead">
+    <div class="kicker">Daily Brief · Suwon</div>
+    <h1>오늘의 종합 브리핑</h1>
+    <div class="date">
+      <span><b>2026년 11월 16일</b> 월요일 · 직전 거래일 11/13(금) 종가 기준</span>
+      <span>날씨 · 증시 · AI</span>
+    </div>
+  </header>
+
+  <div class="ledger">
+    <div class="cell">
+      <div class="tag sky">Weather</div>
+      <div>
+        <div class="figure">수원 17° / 7°</div>
+        <div class="sub">찬 공기에 아침 쌀쌀 · 구름 많음, 강수확률 30% · 내일(화) 오후 수도권 비</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="tag market">Market</div>
+      <div>
+        <div class="figure">코스피 5,290.53 (-0.98%)</div>
+        <div class="sub">11/13(금) 종가 · 코스닥 699.66(+0.45%) · 환율 1,336.7원 · 나스닥 -0.91%</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="tag ai">AI</div>
+      <div>
+        <div class="figure">'AI 빅위크' 개막</div>
+        <div class="sub">17일(현지) 엔비디아 실적 · 18일 앤트로픽 공모가 · 19일 상장 · 황 복귀 요구 확산</div>
+      </div>
+    </div>
+  </div>
+
+  <section class="s-sky">
+    <div class="head"><span class="spine"></span><h2>날씨</h2><span class="en">Suwon, Gyeonggi</span></div>
+
+    <div class="wx">
+      <div>
+        <div class="lab">오늘 · 11/16 (월)</div>
+        <div class="val">17° / 7°</div>
+        <div class="note">북쪽에서 찬 공기가 내려와 어제보다 아침이 확연히 쌀쌀합니다. 하루 종일 구름이 많고, 내륙 일부는 오전까지 짙은 안개가 낄 수 있습니다</div>
+      </div>
+      <div>
+        <div class="lab">내일 · 11/17 (화)</div>
+        <div class="val" style="font-size:22px">오후 비</div>
+        <div class="note">수도권은 낮 12~18시 사이 비가 시작될 전망입니다. 수원 기온 수치는 확인 불가(서울 기준 아침 7도, 낮 17도 안팎)</div>
+      </div>
+      <div>
+        <div class="lab">강수</div>
+        <div class="val" style="font-size:22px">30%</div>
+        <div class="note">수원 오전·오후 강수확률 각 30%. 비·눈은 강원·경북 동해안과 강원 산지 중심입니다</div>
+      </div>
+      <div>
+        <div class="lab">미세먼지 · 바람 · 자외선</div>
+        <div class="val" style="font-size:22px">새벽·밤 '나쁨'</div>
+        <div class="note">수도권은 새벽까지 나쁨, 낮엔 보통, 밤에 다시 나쁨으로 오를 수 있습니다. 바람·자외선 수치는 확인 불가</div>
+      </div>
+    </div>
+
+    <div class="advice">
+      <b>오늘 챙길 것.</b> 출근길은 7도 안팎이라 어제보다 한 겹 더 입으세요. 아침 안개 구간에선 운전 속도를 줄이고, 새벽·밤 외출엔 마스크가 있으면 좋습니다. 내일은 오후부터 비가 와 우산이 필요하고, 비가 그친 뒤 수능(19일, 목) 아침엔 영하권 추위가 예보돼 있습니다.
+    </div>
+  </section>
+
+  <section class="s-market">
+    <div class="head"><span class="spine"></span><h2>증시</h2><span class="en">Latest Close</span></div>
+
+    <table>
+      <thead>
+        <tr><th>지표</th><th>종가</th><th>등락</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>코스피 <span class="closed">11/13(금) 종가 · 오늘 장 진행 중</span></td><td>5,290.53</td><td class="down">-52.20 (-0.98%)</td></tr>
+        <tr><td>코스닥 <span class="closed">11/13(금) 종가 · 오늘 장 진행 중</span></td><td>699.66</td><td class="up">+3.13 (+0.45%)</td></tr>
+        <tr><td>원/달러 <span class="closed">11/13(금) 주간거래 종가</span></td><td>1,336.7원</td><td class="up">+6.0원</td></tr>
+        <tr><td>다우 <span class="closed">11/13(금·현지) 종가</span></td><td>52,347.55</td><td class="up">+50.46 (+0.10%)</td></tr>
+        <tr><td>S&amp;P500 <span class="closed">11/13(금·현지) 종가</span></td><td>7,561.67</td><td class="down">-30.73 (-0.40%)</td></tr>
+        <tr><td>나스닥 <span class="closed">11/13(금·현지) 종가</span></td><td>25,136.27</td><td class="down">-229.82 (-0.91%)</td></tr>
+      </tbody>
+    </table>
+    <p class="closed" style="margin-top:8px">주말 동안 국내외 증시가 쉬어 직전 거래일은 여전히 11/13(금)입니다. 수치는 11/15 브리핑에서 출처 기사로 확인한 값과 같으며, 오늘(11/16) 국내장 종가는 장 마감 후 반영됩니다. 원/달러 상승은 원화 약세를 뜻합니다. 표의 색은 한국식(상승 빨강, 하락 파랑)입니다.</p>
+
+    <div class="card" style="margin-top:12px">
+      <h3 style="font-size:16px;font-weight:700;margin-bottom:8px">이번 주 관전 포인트</h3>
+      <p style="font-size:14.5px;color:var(--ink-2)">금요일 코스피는 장 초반 5,500선을 넘었다가 외국인 매도에 밀려 1% 가까이 내린 채 한 주를 마쳤습니다. 이번 주는 엔비디아 실적(한국시간 18일 새벽)과 앤트로픽 공모가 확정·상장이 연달아 있어 삼성전자·SK하이닉스 등 반도체 대형주의 변동성이 커질 수 있습니다. 증권가 일부는 미 국채 금리 상승(10년물 5%대 보도)이 이런 호재 효과를 깎아낼 수 있다고 경계하고 있습니다. 국내 반도체주 반등의 열쇠로는 HBM 고객 다변화가 거론됩니다.</p>
+    </div>
+  </section>
+
+  <section class="s-ai">
+    <div class="head"><span class="spine"></span><h2>AI 최신 뉴스</h2><span class="en">Last 72h</span></div>
+
+    <ol class="news">
+      <li>
+        <h3>엔비디아 주요 주주들 "젠슨 황 복귀 가능성 열어둬야"</h3>
+        <p>알티미터캐피털과 아트레이데스 매니지먼트가 이사회에 서한을 보내, 서두르지 말고 신중한 절차를 밟으며 황 전 CEO의 복귀 길을 닫지 말라고 요청했습니다. 별도로 진행 중인 복귀 청원에는 매체 집계 기준 11만~13만 명이 서명했고 일론 머스크도 동참했다고 밝혔습니다. 이사회는 아직 공식 반응을 내놓지 않았습니다.</p>
+        <span class="stamp">해외 · 11/14~16 보도 · 서명 수 주최 측 집계</span>
+      </li>
+      <li>
+        <h3>엔비디아, 17일(현지) 장 마감 후 3분기 실적 발표</h3>
+        <p>황 퇴진 뒤 처음 맞는 실적 발표로, 임시 CEO 콜레트 크레스가 시장 앞에 섭니다. 엔비디아 주가는 최근 5거래일 동안 13% 넘게 빠져 실적 숫자만큼이나 경영 안정성에 대한 설명이 주가 방향을 가를 것으로 보입니다. 한국 시간으로는 18일 새벽입니다.</p>
+        <span class="stamp">해외 · 11/14~15 주간전망</span>
+      </li>
+      <li>
+        <h3>앤트로픽 IPO, 주문 6배 몰려…공모가 70~78달러</h3>
+        <p>블룸버그 보도를 인용한 국내 기사에 따르면 매각 예정 물량의 6배에 이르는 매수 주문이 들어왔습니다. 18일 공모가를 확정하고 19일 나스닥에서 'ANT'로 거래를 시작할 계획입니다. 기업가치는 CNBC 약 1조 2천억 달러, 로이터 최대 1조 4천억 달러로 매체마다 다르고, 조달 규모 추정치도 엇갈립니다.</p>
+        <span class="stamp">해외 · 11/13~15 보도 · 일정 확정 전</span>
+      </li>
+      <li>
+        <h3>SK그룹, 'AI 플라이휠' 선언…칩에서 AI 서비스까지</h3>
+        <p>SK그룹은 12~14일 이천에서 열린 CEO세미나 결과를 15일 공개했습니다. 최태원 회장은 AI 반도체·데이터센터·에너지를 하나로 엮고, 그 위에 AI 모델과 앱 같은 서비스 사업까지 키우겠다는 구상을 내놨습니다. SK하이닉스는 AI와 디지털 트윈을 결합한 스마트 팹으로 생산 효율을 끌어올리고 있다고 소개됐습니다.</p>
+        <span class="stamp">국내 · 11/15 발표</span>
+      </li>
+      <li>
+        <h3>'젠슨 황 리스크'에 흔들린 삼성전자·SK하이닉스</h3>
+        <p>엔비디아 경영 공백이 AI 생태계 전반의 자금 조달 우려로 번지면서 국내 메모리 대형주도 출렁였습니다. 시장에선 특정 고객사 의존도를 낮추는 HBM 고객 다변화가 반등의 조건으로 꼽힙니다.</p>
+        <span class="stamp">국내 · 11/15 분석</span>
+      </li>
+      <li>
+        <h3>카카오, 12월 개인화 AI '카나나 스페이스' 시범 운영</h3>
+        <p>주간 재계 정리 기사에 따르면 카카오는 12월부터 개인 맞춤형 AI 서비스 '카나나 스페이스'를 시범 운영하고, '모두의 AI'·'칸바스' 등 새 서비스도 연내 선보일 계획입니다. 카카오톡 안에 AI를 녹이는 기존 전략의 연장선입니다.</p>
+        <span class="stamp">국내 · 11/15 주간 정리</span>
+      </li>
+    </ol>
+  </section>
+
+  <div class="takeaway">
+    <div class="en">Bottom line</div>
+    <h2>오늘 기억할 세 가지</h2>
+    <ul>
+      <li>수원은 아침 7도, 낮 17도로 쌀쌀하게 시작합니다. 내일 오후엔 비 소식이 있고, 수능(19일) 아침엔 영하권 추위가 예보돼 있습니다.</li>
+      <li>직전 거래일 11/13(금) 기준 코스피 5,290.53(-0.98%), 코스닥 699.66(+0.45%), 환율 1,336.7원, 나스닥 -0.91%입니다. 오늘 국내장은 엔비디아 이슈를 안고 열립니다.</li>
+      <li>이번 주는 엔비디아 실적(18일 새벽, 한국시간)과 앤트로픽 공모가 확정·상장(18~19일)이 이어지는 'AI 빅위크'입니다.</li>
+    </ul>
+  </div>
+
+  <div class="sources">
+    <h4>출처 확인하기</h4>
+    <a href="https://www.khan.co.kr/article/202611160721001/" target="_blank" rel="noopener">경향신문 · 출근길 쌀쌀한 월요일…강원 산지 눈, 동해안 비</a>
+    <a href="https://view.asiae.co.kr/article/2026111607093332531" target="_blank" rel="noopener">아시아경제 · 월요일 출근길 기온 '뚝'</a>
+    <a href="https://www.segye.com/newsView/20261116501796" target="_blank" rel="noopener">세계일보 · 찬 공기 내려와 쌀쌀한 아침</a>
+    <a href="https://www.thekorean.today/61767" target="_blank" rel="noopener">코리안투데이 · 11월 16일(월) 서울 흐림 8~17℃</a>
+    <a href="https://topstarnews.net/news/articleView.html?idxno=16277176" target="_blank" rel="noopener">톱스타뉴스 · [내일날씨] 전국 구름많음(수원 7~17℃)</a>
+    <a href="https://www.topstarnews.net/news/articleView.html?idxno=16277353" target="_blank" rel="noopener">톱스타뉴스 · [오늘의 날씨] 내일 수도권 오후 비</a>
+    <a href="https://m.news.nate.com/view/20261115n07777" target="_blank" rel="noopener">네이트뉴스 · 내일 아침 기온 '뚝'…화요일엔 전국 비</a>
+    <a href="https://www.khan.co.kr/article/202611151634001/" target="_blank" rel="noopener">경향신문 · 비 그친 뒤 기온 '뚝'…수능 아침 영하권 추위</a>
+    <a href="https://news.mtn.co.kr/article/2026111315370634191" target="_blank" rel="noopener">MTN · 코스피, 외인 매도 공세에 0.98% 내린 5290.53 마감</a>
+    <a href="https://www.news1.kr/finance/market-exr/6353557" target="_blank" rel="noopener">뉴스1 · 환율 6.0원 올라 1336.7원</a>
+    <a href="https://m.news.nate.com/view/20261114n02044" target="_blank" rel="noopener">네이트뉴스 · 엔비디아 악재에 S&amp;P500·나스닥 하락 마감</a>
+    <a href="https://www.tokenpost.kr/news/economy/438754" target="_blank" rel="noopener">토큰포스트 · 엔비디아 실적·앤트로픽 상장 시험대, 미 국채 5.14%</a>
+    <a href="https://www.thestandard.com.hk/finance/article/348560/Two-major-Nvidia-shareholders-push-board-to-keep-Jensen-Huangs-return-on-table" target="_blank" rel="noopener">The Standard · Two major Nvidia shareholders push board</a>
+    <a href="https://finance.yahoo.com/markets/stocks/articles/over-100-000-want-jensen-133708388.html" target="_blank" rel="noopener">Yahoo Finance · Over 100,000 want Jensen Huang back</a>
+    <a href="https://www.kmib.co.kr/article/20261115500990" target="_blank" rel="noopener">국민일보 · AI 랠리 '심판의 주'</a>
+    <a href="https://www.hankyung.com/article/2026111358661" target="_blank" rel="noopener">한국경제 · 앤트로픽 IPO, 공모물량 6배 몰려</a>
+    <a href="https://m.news.nate.com/view/20261115n01583" target="_blank" rel="noopener">네이트뉴스 · [뉴욕증시-주간전망] 'AI 빅위크'</a>
+    <a href="https://www.newspim.com/news/view/20261115000014" target="_blank" rel="noopener">뉴스핌 · SK그룹, 'AI 플라이휠' 전략</a>
+    <a href="https://www.fnnews.com/news/202611151817055908" target="_blank" rel="noopener">파이낸셜뉴스 · 칩만 팔던 SK, AI 앱까지 진출</a>
+    <a href="https://supple.kr/news/cmwhk0v32gxbsal9p9uxunyu3" target="_blank" rel="noopener">서플 · '젠슨 황 리스크'에 출렁인 삼전·SK하닉</a>
+    <a href="https://www.joongangenews.com/news/articleView.html?idxno=561927" target="_blank" rel="noopener">중앙이코노미뉴스 · 주간 재계 나침반(카카오 카나나 스페이스)</a>
+    <a href="https://www.weather.go.kr/w/forecast/overall/short-term.do" target="_blank" rel="noopener">기상청 날씨누리 · 단기예보(수원)</a>
+  </div>
+
+  <footer>
+    Claude가 공개 자료를 종합해 자동 생성한 브리핑입니다. 수치는 작성 시점 기준이며, 투자 판단의 근거로 삼기 전에 원문과 실시간 시세를 반드시 확인하세요. 투자 자문이 아닙니다.
+  </footer>
+
+</div>
+</body>
+</html>
