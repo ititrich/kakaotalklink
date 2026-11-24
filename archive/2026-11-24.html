@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>데일리 브리핑 · 2026.11.24</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+:root{
+  --bg:#E7EBEF;
+  --surface:#FBFCFD;
+  --ink:#111820;
+  --ink-2:#4A5866;
+  --ink-3:#8A97A3;
+  --rule:#C8D2DA;
+  --sky:#1C6E9E;
+  --market:#A63D28;
+  --ai:#57468C;
+  --pos:#C0392B;
+  --neg:#1F6FB2;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:Pretendard,-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo',sans-serif;
+  font-size:16px;line-height:1.65;
+  padding:0 20px 72px;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:760px;margin:0 auto}
+
+/* ---------- masthead ---------- */
+.masthead{padding:44px 0 22px;border-bottom:2px solid var(--ink)}
+.kicker{
+  font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ink-3);margin-bottom:14px;
+}
+.masthead h1{
+  font-family:'Nanum Myeongjo',serif;font-weight:800;
+  font-size:clamp(34px,9vw,54px);line-height:1.05;letter-spacing:-.02em;
+}
+.masthead .date{
+  display:flex;flex-wrap:wrap;gap:6px 16px;align-items:baseline;
+  margin-top:14px;font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--ink-2);
+}
+.masthead .date b{font-weight:600;color:var(--ink)}
+
+/* ---------- ledger (signature) ---------- */
+.ledger{
+  display:grid;grid-template-columns:1fr;
+  border-bottom:1px solid var(--rule);
+}
+.ledger .cell{
+  display:grid;grid-template-columns:70px 1fr;gap:16px;align-items:baseline;
+  padding:18px 0;border-bottom:1px solid var(--rule);
+}
+.ledger .cell:last-child{border-bottom:none}
+.ledger .tag{
+  font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.16em;
+  text-transform:uppercase;padding-top:6px;
+}
+.ledger .tag.sky{color:var(--sky)}
+.ledger .tag.market{color:var(--market)}
+.ledger .tag.ai{color:var(--ai)}
+.ledger .figure{
+  font-family:'IBM Plex Mono',monospace;font-weight:600;
+  font-size:clamp(22px,6vw,30px);line-height:1.2;letter-spacing:-.02em;
+}
+.ledger .sub{font-size:13.5px;color:var(--ink-2);margin-top:3px}
+
+/* ---------- sections ---------- */
+section{margin-top:52px}
+.head{
+  display:flex;align-items:center;gap:12px;
+  padding-bottom:10px;margin-bottom:22px;border-bottom:1px solid var(--ink);
+}
+.spine{width:5px;height:26px;border-radius:1px;flex:none}
+.s-sky .spine{background:var(--sky)}
+.s-market .spine{background:var(--market)}
+.s-ai .spine{background:var(--ai)}
+.head h2{font-family:'Nanum Myeongjo',serif;font-size:24px;font-weight:800;letter-spacing:-.01em}
+.head .en{
+  margin-left:auto;font-family:'IBM Plex Mono',monospace;font-size:10px;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);
+}
+
+.card{background:var(--surface);border:1px solid var(--rule);border-radius:3px;padding:20px}
+.card + .card{margin-top:12px}
+
+/* weather */
+.wx{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:3px;overflow:hidden}
+.wx div{background:var(--surface);padding:18px 16px}
+.wx .lab{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.16em;color:var(--ink-3);text-transform:uppercase}
+.wx .val{font-family:'IBM Plex Mono',monospace;font-size:26px;font-weight:600;margin-top:6px;letter-spacing:-.02em}
+.wx .note{font-size:13px;color:var(--ink-2);margin-top:2px}
+.advice{
+  margin-top:12px;padding:14px 16px;border-left:4px solid var(--sky);
+  background:var(--surface);font-size:14.5px;color:var(--ink-2);
+}
+.advice b{color:var(--ink);font-weight:600}
+
+/* market table */
+table{width:100%;border-collapse:collapse;background:var(--surface);border:1px solid var(--rule);border-radius:3px}
+th,td{padding:13px 14px;text-align:right;border-bottom:1px solid var(--rule);font-family:'IBM Plex Mono',monospace;font-size:14px}
+th{
+  font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);
+  font-weight:500;background:transparent;
+}
+th:first-child,td:first-child{text-align:left;font-family:Pretendard,sans-serif;font-size:14.5px;font-weight:600}
+tr:last-child td{border-bottom:none}
+.up{color:var(--pos)}
+.down{color:var(--neg)}
+.closed{color:var(--ink-3);font-size:11px;font-weight:500}
+
+/* ai list */
+ol.news{list-style:none;counter-reset:n}
+ol.news li{
+  counter-increment:n;background:var(--surface);border:1px solid var(--rule);
+  border-radius:3px;padding:18px 20px 18px 20px;position:relative;
+}
+ol.news li + li{margin-top:10px}
+ol.news li::before{
+  content:counter(n,decimal-leading-zero);
+  font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;
+  color:var(--ai);display:block;margin-bottom:8px;
+}
+ol.news h3{font-size:16.5px;font-weight:700;line-height:1.45;letter-spacing:-.01em}
+ol.news p{font-size:14px;color:var(--ink-2);margin-top:6px}
+.stamp{
+  display:inline-block;margin-top:10px;font-family:'IBM Plex Mono',monospace;
+  font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);
+  border:1px solid var(--rule);border-radius:2px;padding:3px 8px;
+}
+
+/* takeaway */
+.takeaway{
+  margin-top:52px;background:var(--ink);color:#E7EBEF;border-radius:3px;padding:28px 24px;
+}
+.takeaway .en{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#8A97A3}
+.takeaway h2{font-family:'Nanum Myeongjo',serif;font-size:22px;font-weight:800;margin:10px 0 14px}
+.takeaway ul{list-style:none}
+.takeaway li{padding-left:18px;position:relative;font-size:15px;color:#C8D2DA;margin-top:9px}
+.takeaway li::before{content:"—";position:absolute;left:0;color:#5A6874}
+
+/* sources */
+.sources{margin-top:44px;padding-top:20px;border-top:1px solid var(--rule)}
+.sources h4{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);margin-bottom:12px}
+.sources a{display:block;color:var(--ink-2);font-size:13.5px;text-decoration:none;padding:5px 0;border-bottom:1px dotted var(--rule)}
+.sources a:hover,.sources a:focus{color:var(--sky)}
+footer{margin-top:36px;font-size:12.5px;color:var(--ink-3);line-height:1.7}
+
+@media(min-width:640px){
+  .ledger{grid-template-columns:repeat(3,1fr);gap:0}
+  .ledger .cell{
+    grid-template-columns:1fr;gap:0;border-bottom:none;border-right:1px solid var(--rule);
+    padding:22px 20px 22px 0;
+  }
+  .ledger .cell:first-child{padding-left:0}
+  .ledger .cell:not(:first-child){padding-left:20px}
+  .ledger .cell:last-child{border-right:none}
+  .ledger .tag{padding-top:0;margin-bottom:8px}
+}
+@media(prefers-reduced-motion:no-preference){
+  .card,ol.news li,.wx,table{animation:rise .5s ease both}
+  @keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+    <header class="masthead">
+    <div class="kicker">Daily Brief · Suwon</div>
+    <h1>오늘의 종합 브리핑</h1>
+    <div class="date">
+      <span><b>2026년 11월 24일</b> 화요일 · 국내 11/23(월) · 미국 11/23(월·현지) 종가 기준</span>
+      <span>날씨 · 증시 · AI</span>
+    </div>
+  </header>
+
+  <div class="ledger">
+    <div class="cell">
+      <div class="tag sky">Weather</div>
+      <div>
+        <div class="figure">수원 3° / -1°</div>
+        <div class="sub">대체로 맑지만 종일 영하권 언저리 · 강풍에 체감온도 더 낮음 · 내일(수) 아침 -4°</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="tag market">Market</div>
+      <div>
+        <div class="figure">코스피 4,708.54 (-3.31%)</div>
+        <div class="sub">11/23(월) 종가 · 코스닥 635.45(-1.58%) · 환율 1,345.9원 · 간밤 나스닥 +6.51%</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="tag ai">AI</div>
+      <div>
+        <div class="figure">젠슨 황 복귀</div>
+        <div class="sub">엔비디아 이사회 만장일치로 복귀 의결 · 주가 +31.48% · 오늘 국내 반도체주 반영 주목</div>
+      </div>
+    </div>
+  </div>
+
+  <section class="s-sky">
+    <div class="head"><span class="spine"></span><h2>날씨</h2><span class="en">Suwon, Gyeonggi</span></div>
+
+    <div class="wx">
+      <div>
+        <div class="lab">오늘 · 11/24 (화)</div>
+        <div class="val">3° / -1°</div>
+        <div class="note">기상청 자료를 전한 보도 기준으로 수원 아침 최저 -1도, 낮 최고 3도입니다. 평년보다 낮아 하루 종일 쌀쌀합니다</div>
+      </div>
+      <div>
+        <div class="lab">내일 · 11/25 (수)</div>
+        <div class="val" style="font-size:22px">8° / -4°</div>
+        <div class="note">기상청 날씨누리 기준 수원 최저 -4도, 최고 8도에 대체로 맑음입니다. 일부 매체는 최저를 -3도로 적었습니다. 아침은 오늘보다 더 춥고 낮엔 풀립니다</div>
+      </div>
+      <div>
+        <div class="lab">강수</div>
+        <div class="val" style="font-size:22px">없음</div>
+        <div class="note">수원 오전·오후 강수확률은 0%로 예보됐습니다. 비·눈은 충남·전라권에 집중되고 수도권은 대체로 맑습니다. 내일 강수확률도 10% 수준입니다</div>
+      </div>
+      <div>
+        <div class="lab">바람 · 자외선</div>
+        <div class="val" style="font-size:22px">강풍 · 체감 추위</div>
+        <div class="note">찬 대륙고기압 영향으로 바람이 강해 체감온도가 실제보다 낮을 것이라는 보도가 있습니다. 수원 풍속과 자외선 지수 수치는 확인 불가입니다. 기온이 낮은 11월 하순이라 자외선 부담은 크지 않을 것으로 보입니다</div>
+      </div>
+    </div>
+
+    <div class="advice">
+      <b>오늘 챙길 것.</b> 어제 내린 비가 얼었을 수 있어 출근길 그늘진 도로와 계단은 살얼음을 조심하세요. 낮에도 3도 안팎에 바람까지 불어 패딩·목도리가 필요합니다. 우산은 두고 나가도 괜찮고, 내일 아침은 -4도로 더 내려가니 보온을 이어가세요.
+    </div>
+  </section>
+
+  <section class="s-market">
+    <div class="head"><span class="spine"></span><h2>증시</h2><span class="en">Latest Close</span></div>
+
+    <table>
+      <thead>
+        <tr><th>지표</th><th>종가</th><th>등락</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>코스피 <span class="closed">11/23(월) 종가</span></td><td>4,708.54</td><td class="down">-161.42 (-3.31%)</td></tr>
+        <tr><td>코스닥 <span class="closed">11/23(월) 종가</span></td><td>635.45</td><td class="down">-10.23 (-1.58%)</td></tr>
+        <tr><td>원/달러 <span class="closed">11/23(월) 15:30 종가</span></td><td>1,345.9원</td><td class="up">+9.7원</td></tr>
+        <tr><td>다우 <span class="closed">11/23(월·현지) 종가</span></td><td>49,595.30</td><td class="up">+1,447.98 (+3.01%)</td></tr>
+        <tr><td>S&amp;P500 <span class="closed">11/23(월·현지) 종가</span></td><td>7,237.17</td><td class="up">+326.78 (+4.73%)</td></tr>
+        <tr><td>나스닥 <span class="closed">11/23(월·현지) 종가</span></td><td>24,089.60</td><td class="up">+1,471.83 (+6.51%)</td></tr>
+      </tbody>
+    </table>
+    <p class="closed" style="margin-top:8px">이 브리핑은 오늘(11/24, 화) 오전 7시 국내 개장 전에 작성돼, 국내는 11/23(월) 종가, 미국은 11/23(월·현지) 종가를 적었습니다. 환율은 서울 외환시장 오후 3시 30분 기준이며, 원/달러 상승은 원화 약세를 뜻합니다. S&amp;P500은 일부 매체가 7,236.57(+4.71%)로 집계했습니다. 표의 색은 한국식(상승 빨강, 하락 파랑)입니다.</p>
+
+    <div class="card" style="margin-top:12px">
+      <h3 style="font-size:16px;font-weight:700;margin-bottom:8px">오늘 장에서 볼 것</h3>
+      <p style="font-size:14.5px;color:var(--ink-2)">어제 서울 증시는 장중 5% 넘게 빠지며 이틀 연속 매도 사이드카가 걸렸고, 기관 매수로 낙폭을 줄여 4,700선을 겨우 지켰습니다. 코스피 종가는 1월 13일 이후 최저, 코스닥은 2년여 만의 최저입니다. 외국인은 7거래일째 순매도(약 2,470억 원)했고, 환율은 장중 1,351.6원까지 올랐다가 1,345.9원에 마감했습니다. 그런데 서울 장이 끝난 뒤 엔비디아 젠슨 황 CEO 복귀 소식에 나스닥이 6.51% 급반등했습니다. 오늘은 이 반등이 반도체 대형주와 외국인 수급에 얼마나 이어지는지가 관건이고, 25일 美 PCE 물가 발표가 다음 변수입니다.</p>
+    </div>
+  </section>
+
+  <section class="s-ai">
+    <div class="head"><span class="spine"></span><h2>AI 최신 뉴스</h2><span class="en">Last 72h</span></div>
+
+    <ol class="news">
+      <li>
+        <h3>젠슨 황, 사임 11일 만에 엔비디아 CEO 복귀…주가 하루 31% 급등</h3>
+        <p>엔비디아 이사회가 황 CEO의 대표이사·이사회 복귀를 만장일치로 의결했습니다. 미국 정부 고위층 의견을 들은 뒤 국가안보 위협은 없다고 판단했다고 밝혔고, 트럼프 대통령은 이사회와 소통했고 황 CEO와 직접 통화했다고 말했습니다. 주가는 31.48% 오른 165.05달러로 마감했습니다. 다만 외국 정보기관 관련 의혹에 대한 이사회 독립위원회 조사는 계속됩니다.</p>
+        <span class="stamp">해외 · 11/23(현지) 보도</span>
+      </li>
+      <li>
+        <h3>AI발 폭락 뒤 아시아 각국 증시 방어책…대만은 공매도 전면 금지</h3>
+        <p>지난주 AI 관련주 급락 이후 대만·중국·한국이 시장 안정 조치를 내놨습니다. 빚에 기댄 AI 인프라 투자, 불확실한 수익성, 미국 중간선거 이후 규제 가능성이 급락 배경으로 거론됐습니다.</p>
+        <span class="stamp">해외 · 11월 하순 보도</span>
+      </li>
+      <li>
+        <h3>"美 새 의회의 AI 규제" 코스피 변수로 부상</h3>
+        <p>내년 출범하는 미국 의회가 데이터센터 등 AI 투자를 얼마나 제한할지가 국내 증시의 주요 변수로 꼽혔습니다. 미국 금리 흐름과 함께 반도체 비중이 큰 코스피에 부담 요인이 될 수 있다는 분석입니다.</p>
+        <span class="stamp">국내 · 11/24 보도</span>
+      </li>
+      <li>
+        <h3>시스코·오픈AI, 오픈소스 리눅스 보안 프로젝트 '시루도' 공개</h3>
+        <p>AI 에이전트가 리눅스 시스템의 취약점을 찾아 eBPF 기술로 방어막을 만드는 방식의 오픈소스 프로젝트입니다. AI를 공격 탐지뿐 아니라 방어 코드 작성에까지 쓰려는 시도입니다.</p>
+        <span class="stamp">해외 · 11월 하순 보도</span>
+      </li>
+      <li>
+        <h3>앤트로픽, 기업 고객용 데이터 관리 시스템 초기판 출시</h3>
+        <p>'엔터프라이즈 프론티어 세이프가드'라는 이름으로, 기업이 자기 클라우드에 데이터를 두고 직접 관리할 수 있게 했습니다. 데이터 주권과 보안을 중시하는 대기업 수요를 겨냥한 것으로 보입니다.</p>
+        <span class="stamp">해외 · 11월 하순 보도</span>
+      </li>
+      <li>
+        <h3>낫싱, AI 녹음 이어버드 12월 8일 출시 예정</h3>
+        <p>블룸버그를 인용한 보도에 따르면 영국 전자기기 업체 낫싱이 대화를 녹음하고 AI로 정리하는 이어버드를 다음 달 내놓습니다. AI 기능을 앞세운 웨어러블 경쟁이 이어지고 있습니다.</p>
+        <span class="stamp">해외 · 11월 하순 보도 · 블룸버그 인용</span>
+      </li>
+    </ol>
+  </section>
+
+  <div class="takeaway">
+    <div class="en">Bottom line</div>
+    <h2>오늘 기억할 세 가지</h2>
+    <ul>
+      <li>수원은 오늘 -1도~3도로 종일 춥고 바람이 강합니다. 비는 없지만 어제 내린 비가 얼었을 수 있으니 출근길 살얼음을 조심하세요.</li>
+      <li>코스피는 어제 4,708.54(-3.31%)로 10개월 만의 최저였지만, 간밤 나스닥이 6.51% 급반등했습니다. 오늘 외국인이 다시 사는지가 핵심입니다.</li>
+      <li>젠슨 황이 엔비디아로 돌아왔지만 정보기관 관련 조사는 끝나지 않았습니다. 25일 美 PCE 물가와 함께 AI주 변동성은 당분간 이어질 수 있습니다.</li>
+    </ul>
+  </div>
+
+  <div class="sources">
+    <h4>출처 확인하기</h4>
+    <a href="https://news-s.kr/articles/L261124011838c8cd" target="_blank" rel="noopener">뉴스에스 · [오늘의 날씨] 수도권 아침 영하권…수원 -1도</a>
+    <a href="https://www.newsinside.kr/news/articleView.html?idxno=5054599" target="_blank" rel="noopener">뉴스인사이드 · 수원시 장안구 지역 날씨 및 주간 전망</a>
+    <a href="https://www.pointdaily.co.kr/news/articleView.html?idxno=327021" target="_blank" rel="noopener">포인트데일리 · [서울·인천·경기 오늘~모레 날씨]</a>
+    <a href="https://www.gukjenews.com/news/articleView.html?idxno=3760917" target="_blank" rel="noopener">국제뉴스 · 날씨, 서울 아침 영하 1도</a>
+    <a href="https://topstarnews.net/news/articleView.html?idxno=16284351" target="_blank" rel="noopener">톱스타뉴스 · [내일날씨] 서울 -1도·출근길 살얼음 주의</a>
+    <a href="https://www.weather.go.kr/" target="_blank" rel="noopener">기상청 날씨누리</a>
+    <a href="https://www.lcnews.co.kr/news/articleView.html?idxno=211867" target="_blank" rel="noopener">라이센스뉴스 · [마감시황] 코스피 161.42포인트(-3.31%) 내린 4708.54</a>
+    <a href="https://news.mtn.co.kr/article/2026112315544856355" target="_blank" rel="noopener">MTN · 코스피 4700선 턱걸이, 코스닥 2년래 최저</a>
+    <a href="https://www.issueon.co.kr/news/articleView.html?idxno=14462" target="_blank" rel="noopener">이슈온 · 코스피 3.31%↓, 매도 사이드카 연이틀</a>
+    <a href="https://www.gukjenews.com/news/articleView.html?idxno=3760631" target="_blank" rel="noopener">국제뉴스 · 코스피 4708.54로 마감, 2거래일 연속 하락</a>
+    <a href="https://www.slist.kr/news/articleView.html?idxno=784132" target="_blank" rel="noopener">싱글리스트 · 원·달러 환율 1345.9원 마감</a>
+    <a href="https://biz.heraldcorp.com/article/10946751" target="_blank" rel="noopener">헤럴드경제 · 젠슨 황 복귀에 나스닥 6.51% 폭등 마감</a>
+    <a href="https://newsroom.stockplus.com/breaking-news/44727" target="_blank" rel="noopener">스탁플러스 · 뉴욕증시 상승 마감, 나스닥 6.51%</a>
+    <a href="https://www.news1.kr/world/usa-canada/6363508" target="_blank" rel="noopener">뉴스1 · 젠슨 황 복귀에 엔비디아 31.48% 폭등 마감</a>
+    <a href="https://www.aitimes.com/news/articleView.html?idxno=217709" target="_blank" rel="noopener">AI타임스 · 젠슨 황 복귀에 엔비디아 31% 급등</a>
+    <a href="https://m.news.nate.com/view/20261124n00292" target="_blank" rel="noopener">네이트뉴스 · 젠슨 황, 사임 발표 11일 만에 복귀</a>
+    <a href="https://indexbox.io/ko/blog/asian-markets-step-in-after-ai-led-selloff" target="_blank" rel="noopener">IndexBox · AI발 매도세 이후 아시아 시장 지원책</a>
+    <a href="https://m.news.nate.com/view/20261124n01058" target="_blank" rel="noopener">네이트뉴스 · AI 규제·미 금리 인상, 코스피 주요 변수</a>
+    <a href="https://kr.investing.com/news/company-news/article-93CH-2187822" target="_blank" rel="noopener">Investing.com · 시스코·OpenAI 오픈소스 보안 프로젝트</a>
+    <a href="https://kr.investing.com/news/stock-market-news/article-2187716" target="_blank" rel="noopener">Investing.com · Anthropic 기업용 데이터 관리 시스템</a>
+    <a href="https://kr.investing.com/news/stock-market-news/article-93CH-2187691" target="_blank" rel="noopener">Investing.com · Nothing AI 녹음 이어버드 12월 8일 출시</a>
+  </div>
+
+  <footer>
+    Claude가 공개 자료를 종합해 자동 생성한 브리핑입니다. 수치는 작성 시점 기준이며, 투자 판단의 근거로 삼기 전에 원문과 실시간 시세를 반드시 확인하세요. 투자 자문이 아닙니다.
+  </footer>
+
+</div>
+</body>
+</html>
